@@ -15,7 +15,7 @@
 ## Makefile rules
 - contain at least $(NAME), all, clean, fclean, re.
 - recompile/relink only necessary files.
-- Bonuses must be in a different file _bonus.{c/h}.
+- Must include a rule bonus. Bonuses must be in a different file _bonus.{c/h}.
 
 # Mandatory part
 
