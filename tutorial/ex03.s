@@ -12,4 +12,4 @@ label:
 	jg	label			;jump to 'lable' if ecx greater than 0
 
 	mov	eax, 1			;set exit status equal to 1
-	int	0x80
+	syscall

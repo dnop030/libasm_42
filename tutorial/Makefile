@@ -20,13 +20,14 @@ OUTPUT_DIR = output
 all: $(OBJ_ASM)
 
 %.o:%.s
-	$(AS) $(ASFLAGS) $< -o $(OUTPUT_DIR)/$@
-	ld -m elf_x86_64 $(OUTPUT_DIR)/$@ -o $(OUTPUT_DIR)/$(subst $(EXT_OBJ),,$@)
+	@mkdir -p $(OUTPUT_DIR)
+	@$(AS) $(ASFLAGS) $< -o $(OUTPUT_DIR)/$@
+	@ld -m elf_x86_64 $(OUTPUT_DIR)/$@ -o $(OUTPUT_DIR)/$(subst $(EXT_OBJ),,$@)
 # ld -m elf_x86_64 $(subst $(EXT_SRC),$(EXT_OBJ),$<) -o $(subst $(EXT_OBJ),,$@)
 
 clean:
 # rm -rf $(OBJ_ASM)
-	rm -rf ./$(OUTPUT_DIR)/*
+	rm -rf $(OUTPUT_DIR)
 
 .PHONY: all clean
 
