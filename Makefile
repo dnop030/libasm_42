@@ -8,6 +8,7 @@ LIB_NAME = libasm.a
 MAIN = main.c
 
 MAN_SRC = ft_write.s \
+			ft_strlen.s
 
 # src dir
 DIR = src

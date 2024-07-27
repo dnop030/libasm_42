@@ -5,6 +5,8 @@
 #include <fcntl.h>
 #include <errno.h>
 
+// Define a very large size for the maximum test
+#define MAX_STRLEN_TEST_SIZE 1000000
 
 #ifndef HEADER_H
 # define HEADER_H

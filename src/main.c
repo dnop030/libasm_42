@@ -1,18 +1,18 @@
 #include "header.h"
 
-void test_strlen() {
+void test_ft_strlen() {
     size_t len;
 
     // Normal case
-    len = strlen("hello");
-    printf("strlen(\"hello\"): %lu\n", len);
+    len = ft_strlen("hello");
+    printf("ft_strlen(\"hello\"): %lu\n", len);
     if (len != 5) {
         printf("Error: Expected 5, got %lu\n", len);
     }
 
     // Corner case
-    len = strlen("");
-    printf("strlen(\"\"): %lu\n", len);
+    len = ft_strlen("");
+    printf("ft_strlen(\"\"): %lu\n", len);
     if (len != 0) {
         printf("Error: Expected 0, got %lu\n", len);
     }
@@ -22,8 +22,8 @@ void test_strlen() {
     if (long_string) {
         memset(long_string, 'a', MAX_STRLEN_TEST_SIZE);
         long_string[MAX_STRLEN_TEST_SIZE] = '\0';
-        len = strlen(long_string);
-        printf("strlen(long_string): %lu\n", len);
+        len = ft_strlen(long_string);
+        printf("ft_strlen(long_string): %lu\n", len);
         if (len != MAX_STRLEN_TEST_SIZE) {
             printf("Error: Expected %d, got %lu\n", MAX_STRLEN_TEST_SIZE, len);
         }
@@ -174,20 +174,20 @@ void test_read_write() {
 }
 
 int main() {
-    printf("Testing strlen:\n");
-    test_strlen();
+    printf("Testing ft_strlen:\n");
+    test_ft_strlen();
 
-    printf("\nTesting strcmp:\n");
-    test_strcmp();
+    // printf("\nTesting strcmp:\n");
+    // test_strcmp();
 
-    printf("\nTesting strcpy:\n");
-    test_strcpy();
+    // printf("\nTesting strcpy:\n");
+    // test_strcpy();
 
-    printf("\nTesting strdup:\n");
-    test_strdup();
+    // printf("\nTesting strdup:\n");
+    // test_strdup();
 
-    printf("\nTesting read/write:\n");
-    test_read_write();
+    // printf("\nTesting read/write:\n");
+    // test_read_write();
 
     return 0;
 }
