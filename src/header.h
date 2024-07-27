@@ -1,6 +1,10 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+
 
 #ifndef HEADER_H
 # define HEADER_H
