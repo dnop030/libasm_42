@@ -16,6 +16,21 @@ void test_strlen() {
     if (len != 0) {
         printf("Error: Expected 0, got %lu\n", len);
     }
+
+	// Maximum length test case
+    char *long_string = malloc(MAX_STRLEN_TEST_SIZE + 1);
+    if (long_string) {
+        memset(long_string, 'a', MAX_STRLEN_TEST_SIZE);
+        long_string[MAX_STRLEN_TEST_SIZE] = '\0';
+        len = strlen(long_string);
+        printf("strlen(long_string): %lu\n", len);
+        if (len != MAX_STRLEN_TEST_SIZE) {
+            printf("Error: Expected %d, got %lu\n", MAX_STRLEN_TEST_SIZE, len);
+        }
+        free(long_string);
+    } else {
+        printf("Error: Failed to allocate memory for long_string\n");
+    }
 }
 
 void test_strcmp() {
