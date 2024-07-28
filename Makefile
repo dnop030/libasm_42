@@ -52,10 +52,10 @@ test: all $(MAIN_OBJ)
 
 clean:
 	@rm -rf $(OUTPUT_DIR)
+	@rm -f $(LIB_NAME)
 	@echo "DELETED LIB"
 
 fclean: clean
-	@rm -f $(LIB_NAME)
 	@rm -f $(NAME)
 	@echo "DELETED ALL"
 
