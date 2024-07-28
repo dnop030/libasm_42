@@ -1,6 +1,12 @@
+;ft_strlen.s
 ;size_t strlen(const char *s)
 
+
 section .text
+
+;Register usage:
+;$rdi - pointer to input string / return value
+;$rax - counter for length of string
 
 global ft_strlen
 
