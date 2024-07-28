@@ -5,9 +5,12 @@ section .text
 global ft_strlen
 
 ft_strlen:
-    mov rax, 0          ; reset return value
-    cmp [rdi + rax], 0  ; if (*s != 0)
-    ; missing inc pointer
-    jnz ft_strlen       ;
+    mov rax, 0              ; reset counter
+    jmp loop
+inc_cnt:
+    inc rax                 ; inc counter
+loop:
+    cmp byte [rdi + rax], 0 ; whhile (*(s + counter) != 0)
+    jne inc_cnt             ;
 
     ret
