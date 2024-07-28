@@ -5,8 +5,8 @@
 section .text
 
 ;Register usage:
-;$rdi - pointer to input string / return value
-;$rax - counter for length of string
+;$rdi - pointer to input string
+;$rax - counter for length of string / return value
 
 global ft_strlen
 
