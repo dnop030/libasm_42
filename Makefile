@@ -8,7 +8,9 @@ LIB_NAME = libasm.a
 MAIN = main.c
 
 MAN_SRC = ft_write.s \
-			ft_strlen.s
+			ft_strlen.s \
+			ft_strcmp.s \
+			ft_strcpy.s
 
 # src dir
 DIR = src
@@ -39,15 +41,15 @@ $(LIB_NAME): $(MAN_ASM_OBJ)
 
 $(OUTPUT_DIR)/%.o: $(DIR)/%.s
 	@mkdir -p $(OUTPUT_DIR)
-	@$(AS) $(ASFLAGS) $< -o $@
+	@$(AS) $(ASFLAGS) -g $< -o $@
 
 $(MAIN_OBJ): $(DIR)/$(MAIN)
 	@mkdir -p $(OUTPUT_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -g -c $< -o $@
 	@echo "Main test Lib Done!"
 
 test: all $(MAIN_OBJ)
-	@$(CC) -o $(NAME) $(CFLAGS) $(MAIN_OBJ) -L. -lasm
+	@$(CC) -o $(NAME) $(CFLAGS) -g $(MAIN_OBJ) -L. -lasm
 	@echo "READY TO TEST MANDATORY"
 
 clean:
