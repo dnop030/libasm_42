@@ -21,7 +21,7 @@ all: $(OBJ_ASM)
 
 %.o:%.s
 	@mkdir -p $(OUTPUT_DIR)
-	@$(AS) $(ASFLAGS) $< -o $(OUTPUT_DIR)/$@
+	@$(AS) $(ASFLAGS) -g $< -o $(OUTPUT_DIR)/$@
 	@ld -m elf_x86_64 $(OUTPUT_DIR)/$@ -o $(OUTPUT_DIR)/$(subst $(EXT_OBJ),,$@)
 # ld -m elf_x86_64 $(subst $(EXT_SRC),$(EXT_OBJ),$<) -o $(subst $(EXT_OBJ),,$@)
 
