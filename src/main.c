@@ -111,7 +111,7 @@ void test_ft_strcpy() {
 //     free(str);
 // }
 
-void test_write() {
+void test_ft_write() {
     int fd;
     ssize_t bytesWritten;
 
@@ -122,9 +122,9 @@ void test_write() {
         return;
     }
 
-    bytesWritten = write(fd, "hello, world", 12);
+    bytesWritten = ft_write(fd, "hello, world", 12);
     if (bytesWritten == -1) {
-        perror("write");
+        perror("ft_write");
         close(fd);
         return;
     } else if (bytesWritten != 12) {
@@ -140,9 +140,9 @@ void test_write() {
         return;
     }
 
-    bytesWritten = write(fd, "", 0);
+    bytesWritten = ft_write(fd, "", 0);
     if (bytesWritten == -1) {
-        perror("write");
+        perror("ft_write");
     } else if (bytesWritten != 0) {
         printf("Error: Expected 0 bytes written, got %zd\n", bytesWritten);
     }
@@ -150,11 +150,11 @@ void test_write() {
     close(fd);
 
     // Error case: writing to a closed file descriptor
-    bytesWritten = write(fd, "should fail", 11);
+    bytesWritten = ft_write(fd, "should fail", 11);
     if (bytesWritten != -1 || errno != EBADF) {
-        printf("Error: Expected write to fail with EBADF, got %zd, errno %d\n", bytesWritten, errno);
+        printf("Error: Expected ft_write to fail with EBADF, got %zd, errno %d\n", bytesWritten, errno);
     } else {
-        perror("write to closed fd");
+        perror("ft_write to closed fd");
     }
 }
 
@@ -211,20 +211,20 @@ void test_read() {
 }
 
 int main() {
-    printf("Testing ft_strlen:\n");
-    test_ft_strlen();
+    // printf("Testing ft_strlen:\n");
+    // test_ft_strlen();
 
-    printf("\nTesting ft_strcmp:\n");
-    test_ft_strcmp();
+    // printf("\nTesting ft_strcmp:\n");
+    // test_ft_strcmp();
 
-    printf("\nTesting ft_strcpy:\n");
-    test_ft_strcpy();
+    // printf("\nTesting ft_strcpy:\n");
+    // test_ft_strcpy();
 
     // printf("\nTesting ft_strdup:\n");
     // test_ft_strdup();
 
-    // printf("\nTesting write:\n");
-    // test_write();
+    printf("\nTesting ft_write:\n");
+    test_ft_write();
 
     // printf("\nTesting read:\n");
     // test_read();
