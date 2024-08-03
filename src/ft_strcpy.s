@@ -1,4 +1,4 @@
-;char *strcpy(char *restrict dst, const char *restrict src)
+;char *ft_strcpy(char *restrict dst, const char *restrict src)
 
 section .text
 

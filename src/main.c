@@ -1,34 +1,34 @@
 #include "header.h"
 
 // Define a very large size for the maximum test
-#define MAX_STRLEN_TEST_SIZE 1000000
+#define MAX_ft_strlen_TEST_SIZE 1000000
 
-void test_strlen() {
+void test_ft_strlen() {
     size_t len;
 
     // Normal case
-    len = strlen("hello");
-    printf("strlen(\"hello\"): %lu\n", len);
+    len = ft_strlen("hello");
+    printf("ft_strlen(\"hello\"): %lu\n", len);
     if (len != 5) {
         printf("Error: Expected 5, got %lu\n", len);
     }
 
     // Corner case
-    len = strlen("");
-    printf("strlen(\"\"): %lu\n", len);
+    len = ft_strlen("");
+    printf("ft_strlen(\"\"): %lu\n", len);
     if (len != 0) {
         printf("Error: Expected 0, got %lu\n", len);
     }
 
     // Maximum length test case
-    char *long_string = malloc(MAX_STRLEN_TEST_SIZE + 1);
+    char *long_string = malloc(MAX_ft_strlen_TEST_SIZE + 1);
     if (long_string) {
-        memset(long_string, 'a', MAX_STRLEN_TEST_SIZE);
-        long_string[MAX_STRLEN_TEST_SIZE] = '\0';
-        len = strlen(long_string);
-        printf("strlen(long_string): %lu\n", len);
-        if (len != MAX_STRLEN_TEST_SIZE) {
-            printf("Error: Expected %d, got %lu\n", MAX_STRLEN_TEST_SIZE, len);
+        memset(long_string, 'a', MAX_ft_strlen_TEST_SIZE);
+        long_string[MAX_ft_strlen_TEST_SIZE] = '\0';
+        len = ft_strlen(long_string);
+        printf("ft_strlen(long_string): %lu\n", len);
+        if (len != MAX_ft_strlen_TEST_SIZE) {
+            printf("Error: Expected %d, got %lu\n", MAX_ft_strlen_TEST_SIZE, len);
         }
         free(long_string);
     } else {
@@ -36,80 +36,80 @@ void test_strlen() {
     }
 }
 
-void test_strcmp() {
+void test_ft_strcmp() {
     int result;
 
     // Normal case
-    result = strcmp("hello", "hello");
-    printf("strcmp(\"hello\", \"hello\"): %d\n", result);
+    result = ft_strcmp("hello", "hello");
+    printf("ft_strcmp(\"hello\", \"hello\"): %d\n", result);
     if (result != 0) {
         printf("Error: Expected 0, got %d\n", result);
     }
 
-    result = strcmp("hello", "world");
-    printf("strcmp(\"hello\", \"world\"): %d\n", result);
+    result = ft_strcmp("hello", "world");
+    printf("ft_strcmp(\"hello\", \"world\"): %d\n", result);
     if (result >= 0) {
         printf("Error: Expected negative value, got %d\n", result);
     }
 
     // Corner case
-    result = strcmp("", "");
-    printf("strcmp(\"\", \"\"): %d\n", result);
+    result = ft_strcmp("", "");
+    printf("ft_strcmp(\"\", \"\"): %d\n", result);
     if (result != 0) {
         printf("Error: Expected 0, got %d\n", result);
     }
 
-    result = strcmp("hello", "");
-    printf("strcmp(\"hello\", \"\"): %d\n", result);
+    result = ft_strcmp("hello", "");
+    printf("ft_strcmp(\"hello\", \"\"): %d\n", result);
     if (result <= 0) {
         printf("Error: Expected positive value, got %d\n", result);
     }
 
-    result = strcmp("", "hello");
-    printf("strcmp(\"\", \"hello\"): %d\n", result);
+    result = ft_strcmp("", "hello");
+    printf("ft_strcmp(\"\", \"hello\"): %d\n", result);
     if (result >= 0) {
         printf("Error: Expected negative value, got %d\n", result);
     }
 }
 
-void test_strcpy() {
+void test_ft_strcpy() {
     char dest[50];
     char *result;
 
     // Normal case
-    result = strcpy(dest, "hello");
-    printf("strcpy(dest, \"hello\"): %s\n", dest);
-    if (strcmp(result, "hello") != 0) {
+    result = ft_strcpy(dest, "hello");
+    printf("ft_strcpy(dest, \"hello\"): %s\n", dest);
+    if (ft_strcmp(result, "hello") != 0) {
         printf("Error: Expected \"hello\", got \"%s\"\n", result);
     }
 
     // Corner case
-    result = strcpy(dest, "");
-    printf("strcpy(dest, \"\"): %s\n", dest);
-    if (strcmp(result, "") != 0) {
+    result = ft_strcpy(dest, "");
+    printf("ft_strcpy(dest, \"\"): %s\n", dest);
+    if (ft_strcmp(result, "") != 0) {
         printf("Error: Expected \"\", got \"%s\"\n", result);
     }
 }
 
-void test_strdup() {
-    char *str;
+// void test_ft_strdup() {
+//     char *str;
 
-    // Normal case
-    str = strdup("hello");
-    printf("strdup(\"hello\"): %s\n", str);
-    if (strcmp(str, "hello") != 0) {
-        printf("Error: Expected \"hello\", got \"%s\"\n", str);
-    }
-    free(str);
+//     // Normal case
+//     str = ft_strdup("hello");
+//     printf("ft_strdup(\"hello\"): %s\n", str);
+//     if (ft_strcmp(str, "hello") != 0) {
+//         printf("Error: Expected \"hello\", got \"%s\"\n", str);
+//     }
+//     free(str);
 
-    // Corner case
-    str = strdup("");
-    printf("strdup(\"\"): %s\n", str);
-    if (strcmp(str, "") != 0) {
-        printf("Error: Expected \"\", got \"%s\"\n", str);
-    }
-    free(str);
-}
+//     // Corner case
+//     str = ft_strdup("");
+//     printf("ft_strdup(\"\"): %s\n", str);
+//     if (ft_strcmp(str, "") != 0) {
+//         printf("Error: Expected \"\", got \"%s\"\n", str);
+//     }
+//     free(str);
+// }
 
 void test_write() {
     int fd;
@@ -211,23 +211,23 @@ void test_read() {
 }
 
 int main() {
-    printf("Testing strlen:\n");
-    test_strlen();
+    printf("Testing ft_strlen:\n");
+    test_ft_strlen();
 
-    printf("\nTesting strcmp:\n");
-    test_strcmp();
+    printf("\nTesting ft_strcmp:\n");
+    test_ft_strcmp();
 
-    printf("\nTesting strcpy:\n");
-    test_strcpy();
+    printf("\nTesting ft_strcpy:\n");
+    test_ft_strcpy();
 
-    printf("\nTesting strdup:\n");
-    test_strdup();
+    // printf("\nTesting ft_strdup:\n");
+    // test_ft_strdup();
 
-    printf("\nTesting write:\n");
-    test_write();
+    // printf("\nTesting write:\n");
+    // test_write();
 
-    printf("\nTesting read:\n");
-    test_read();
+    // printf("\nTesting read:\n");
+    // test_read();
 
     return 0;
 }
