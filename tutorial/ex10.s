@@ -1,5 +1,5 @@
 ;nasm -f elf64 ex10.s -o ex10.o
-;ld -m64 elf_x86_64 ex10.o -o ex10 -lc
+;ld -m elf_x86_64 ex10.o -o ex10 -lc
 
 section .data
 fmt db "Error number: %d", 10, 0
