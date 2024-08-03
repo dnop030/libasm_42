@@ -1,5 +1,6 @@
 ;nasm -f elf64 ex10.s -o ex10.o
-;ld -m elf_x86_64 ex10.o -o ex10 -lc
+;ld ex10.o -o ex10 -lc -dynamic-linker /lib64/ld-linux-x86-64.so.2 -L/usr/lib/x86_64-linux-gnu
+
 
 section .data
 fmt db "Error number: %d", 10, 0
