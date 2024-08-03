@@ -10,7 +10,8 @@ MAIN = main.c
 MAN_SRC = ft_write.s \
 			ft_strlen.s \
 			ft_strcmp.s \
-			ft_strcpy.s
+			ft_strcpy.s \
+			ft_read.s
 
 # src dir
 DIR = src
