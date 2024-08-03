@@ -1,29 +1,32 @@
 #include "header.h"
 
-void test_ft_strlen() {
+// Define a very large size for the maximum test
+#define MAX_STRLEN_TEST_SIZE 1000000
+
+void test_strlen() {
     size_t len;
 
     // Normal case
-    len = ft_strlen("hello");
-    printf("ft_strlen(\"hello\"): %lu\n", len);
+    len = strlen("hello");
+    printf("strlen(\"hello\"): %lu\n", len);
     if (len != 5) {
         printf("Error: Expected 5, got %lu\n", len);
     }
 
     // Corner case
-    len = ft_strlen("");
-    printf("ft_strlen(\"\"): %lu\n", len);
+    len = strlen("");
+    printf("strlen(\"\"): %lu\n", len);
     if (len != 0) {
         printf("Error: Expected 0, got %lu\n", len);
     }
 
-	// Maximum length test case
+    // Maximum length test case
     char *long_string = malloc(MAX_STRLEN_TEST_SIZE + 1);
     if (long_string) {
         memset(long_string, 'a', MAX_STRLEN_TEST_SIZE);
         long_string[MAX_STRLEN_TEST_SIZE] = '\0';
-        len = ft_strlen(long_string);
-        printf("ft_strlen(long_string): %lu\n", len);
+        len = strlen(long_string);
+        printf("strlen(long_string): %lu\n", len);
         if (len != MAX_STRLEN_TEST_SIZE) {
             printf("Error: Expected %d, got %lu\n", MAX_STRLEN_TEST_SIZE, len);
         }
@@ -108,10 +111,9 @@ void test_strdup() {
     free(str);
 }
 
-void test_read_write() {
-    char buffer[128];
+void test_write() {
     int fd;
-    ssize_t bytesRead, bytesWritten;
+    ssize_t bytesWritten;
 
     // Normal case
     fd = open("testfile.txt", O_CREAT | O_RDWR, 0666);
@@ -129,24 +131,59 @@ void test_read_write() {
         printf("Error: Expected 12 bytes written, got %zd\n", bytesWritten);
     }
 
-    lseek(fd, 0, SEEK_SET);
+    close(fd);
 
-    bytesRead = read(fd, buffer, bytesWritten);
+    // Corner case: writing empty string
+    fd = open("emptyfile.txt", O_CREAT | O_RDWR, 0666);
+    if (fd == -1) {
+        perror("open");
+        return;
+    }
+
+    bytesWritten = write(fd, "", 0);
+    if (bytesWritten == -1) {
+        perror("write");
+    } else if (bytesWritten != 0) {
+        printf("Error: Expected 0 bytes written, got %zd\n", bytesWritten);
+    }
+
+    close(fd);
+
+    // Error case: writing to a closed file descriptor
+    bytesWritten = write(fd, "should fail", 11);
+    if (bytesWritten != -1 || errno != EBADF) {
+        printf("Error: Expected write to fail with EBADF, got %zd, errno %d\n", bytesWritten, errno);
+    } else {
+        perror("write to closed fd");
+    }
+}
+
+void test_read() {
+    char buffer[128];
+    int fd;
+    ssize_t bytesRead;
+
+    // Normal case
+    fd = open("testfile.txt", O_RDONLY);
+    if (fd == -1) {
+        perror("open");
+        return;
+    }
+
+    bytesRead = read(fd, buffer, sizeof(buffer) - 1);
     if (bytesRead == -1) {
         perror("read");
         close(fd);
         return;
-    } else if (bytesRead != bytesWritten) {
-        printf("Error: Expected %zd bytes read, got %zd\n", bytesWritten, bytesRead);
     }
 
     buffer[bytesRead] = '\0';
-    printf("read/write normal case: %s\n", buffer);
+    printf("read normal case: %s\n", buffer);
 
     close(fd);
 
     // Corner case: empty file
-    fd = open("emptyfile.txt", O_CREAT | O_RDWR, 0666);
+    fd = open("emptyfile.txt", O_RDONLY);
     if (fd == -1) {
         perror("open");
         return;
@@ -160,34 +197,37 @@ void test_read_write() {
     }
 
     buffer[bytesRead] = '\0';
-    printf("read/write empty file: %s\n", buffer);
+    printf("read empty file: %s\n", buffer);
 
     close(fd);
 
     // Error case: reading from a closed file descriptor
     bytesRead = read(fd, buffer, sizeof(buffer));
-    if (bytesRead == -1 && errno != EBADF) {
-        printf("Error: Expected EBADF, got %d\n", errno);
+    if (bytesRead != -1 || errno != EBADF) {
+        printf("Error: Expected read to fail with EBADF, got %zd, errno %d\n", bytesRead, errno);
     } else {
         perror("read from closed fd");
     }
 }
 
 int main() {
-    printf("Testing ft_strlen:\n");
-    test_ft_strlen();
+    printf("Testing strlen:\n");
+    test_strlen();
 
-    // printf("\nTesting strcmp:\n");
-    // test_strcmp();
+    printf("\nTesting strcmp:\n");
+    test_strcmp();
 
-    // printf("\nTesting strcpy:\n");
-    // test_strcpy();
+    printf("\nTesting strcpy:\n");
+    test_strcpy();
 
-    // printf("\nTesting strdup:\n");
-    // test_strdup();
+    printf("\nTesting strdup:\n");
+    test_strdup();
 
-    // printf("\nTesting read/write:\n");
-    // test_read_write();
+    printf("\nTesting write:\n");
+    test_write();
+
+    printf("\nTesting read:\n");
+    test_read();
 
     return 0;
 }
