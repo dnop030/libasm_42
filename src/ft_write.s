@@ -4,6 +4,8 @@ section .text
 
 ;Register usage:
 ;$rax - tmp reg to keep return value from syscall and return to main Fn
+;$rdx - tmp reg to keep status after push and pop from stack in order to
+;		manipulate and send back to __errno_location
 
 global ft_write
 
@@ -21,8 +23,14 @@ ft_write:
 	; write error
 	push	rax							; keep status write to the stack
 	call	__errno_location wrt ..plt
-	pop		word [rax]
-	neg		word [rax]
+
+	; 1st try
+	;pop		word [rax]		; problem is here => cannot pop to mem directly
+	;neg		word [rax]
+
+	pop		rdx
+	neg		rdx
+	mov		byte [rax], dl
 
 	mov	rax, -1
 
