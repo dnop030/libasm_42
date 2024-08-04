@@ -43,15 +43,15 @@ $(LIB_NAME): $(MAN_ASM_OBJ)
 
 $(OUTPUT_DIR)/%.o: $(DIR)/%.s
 	@mkdir -p $(OUTPUT_DIR)
-	@$(AS) $(ASFLAGS) -g $< -o $@
+	@$(AS) $(ASFLAGS) $< -o $@
 
 $(MAIN_OBJ): $(DIR)/$(MAIN)
 	@mkdir -p $(OUTPUT_DIR)
-	@$(CC) $(CFLAGS) -g -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Main test Lib Done!"
 
 test: all $(MAIN_OBJ)
-	@$(CC) -o $(NAME) $(CFLAGS) -g $(MAIN_OBJ) -L. -lasm
+	@$(CC) -o $(NAME) $(CFLAGS) $(MAIN_OBJ) -L. -lasm
 	@echo "READY TO TEST MANDATORY"
 
 clean:

@@ -211,23 +211,23 @@ void test_ft_read() {
 }
 
 int main() {
-	// printf("Testing ft_strlen:\n");
-	// test_ft_strlen();
+	printf("Testing ft_strlen:\n");
+	test_ft_strlen();
 
-	// printf("\nTesting ft_strcmp:\n");
-	// test_ft_strcmp();
+	printf("\nTesting ft_strcmp:\n");
+	test_ft_strcmp();
 
-	// printf("\nTesting ft_strcpy:\n");
-	// test_ft_strcpy();
+	printf("\nTesting ft_strcpy:\n");
+	test_ft_strcpy();
 
 	printf("\nTesting ft_strdup:\n");
 	test_ft_strdup();
 
-	// printf("\nTesting ft_write:\n");
-	// test_ft_write();
+	printf("\nTesting ft_write:\n");
+	test_ft_write();
 
-	// printf("\nTesting ft_read:\n");
-	// test_ft_read();
+	printf("\nTesting ft_read:\n");
+	test_ft_read();
 
 	return 0;
 }
