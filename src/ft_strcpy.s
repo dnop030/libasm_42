@@ -5,7 +5,7 @@ section .text
 ;Register usage:
 ;$rdi - ps1	(pointer to input dst)
 ;$rsi - ps2	(pointer to input src)
-;$rdx - tmp reg to cpy from src to dst due to cannot mov mem to mem
+;$dl - tmp reg to cpy from src to dst due to cannot mov mem to mem
 ;$rax - pointer pointed at dst
 
 global ft_strcpy
@@ -19,8 +19,8 @@ incptr:
 	inc	rdi					; ps1++
 
 loop:
-	mov	rdx, [rsi]			; cpy byte from src to dst
-	mov [rdi], rdx			;
+	mov	dl, [rsi]			; cpy byte from src to dst
+	mov [rdi], dl			;
 	cmp	byte [rsi], 0x00	;
 	jne	incptr				; while (*ps1 != NULL)
 
