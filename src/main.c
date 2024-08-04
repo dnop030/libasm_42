@@ -91,25 +91,25 @@ void test_ft_strcpy() {
 	}
 }
 
-// void test_ft_strdup() {
-//     char *str;
+void test_ft_strdup() {
+    char *str;
 
-//     // Normal case
-//     str = ft_strdup("hello");
-//     printf("ft_strdup(\"hello\"): %s\n", str);
-//     if (ft_strcmp(str, "hello") != 0) {
-//         printf("Error: Expected \"hello\", got \"%s\"\n", str);
-//     }
-//     free(str);
+    // Normal case
+    str = ft_strdup("hello");
+    printf("ft_strdup(\"hello\"): %s\n", str);
+    if (ft_strcmp(str, "hello") != 0) {
+        printf("Error: Expected \"hello\", got \"%s\"\n", str);
+    }
+    free(str);
 
-//     // Corner case
-//     str = ft_strdup("");
-//     printf("ft_strdup(\"\"): %s\n", str);
-//     if (ft_strcmp(str, "") != 0) {
-//         printf("Error: Expected \"\", got \"%s\"\n", str);
-//     }
-//     free(str);
-// }
+    // Corner case
+    str = ft_strdup("");
+    printf("ft_strdup(\"\"): %s\n", str);
+    if (ft_strcmp(str, "") != 0) {
+        printf("Error: Expected \"\", got \"%s\"\n", str);
+    }
+    free(str);
+}
 
 void test_ft_write() {
 	int fd;
@@ -220,14 +220,14 @@ int main() {
 	// printf("\nTesting ft_strcpy:\n");
 	// test_ft_strcpy();
 
-	// printf("\nTesting ft_strdup:\n");
-	// test_ft_strdup();
+	printf("\nTesting ft_strdup:\n");
+	test_ft_strdup();
 
-	printf("\nTesting ft_write:\n");
-	test_ft_write();
+	// printf("\nTesting ft_write:\n");
+	// test_ft_write();
 
-	printf("\nTesting ft_read:\n");
-	test_ft_read();
+	// printf("\nTesting ft_read:\n");
+	// test_ft_read();
 
 	return 0;
 }

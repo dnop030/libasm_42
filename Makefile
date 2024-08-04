@@ -11,7 +11,8 @@ MAN_SRC = ft_write.s \
 			ft_strlen.s \
 			ft_strcmp.s \
 			ft_strcpy.s \
-			ft_read.s
+			ft_read.s \
+			ft_strdup.s
 
 # src dir
 DIR = src
