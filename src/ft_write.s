@@ -15,7 +15,7 @@ ft_write:
 
 	mov rax, 1							; syscall write
 	syscall
-	cmp	rax, 0x00						; if (write < 0)
+	cmp	rax, -1						; if (write < 0)
 	jg	return
 
 	; write error
