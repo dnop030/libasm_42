@@ -3,6 +3,7 @@
 section .text
 
 ;Register usage:
+;$rax - tmp reg to keep return value from syscall and return to main Fn
 
 global ft_read
 
