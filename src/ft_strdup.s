@@ -8,14 +8,16 @@ section .text
 
 global ft_strdup
 
-extern malloc, ft_strlen, ft_strcpy
+extern malloc
+extern ft_strlen
+extern ft_strcpy
 
 ft_strdup:
-	push	r12
-	push	r13
+
 	mov		r12, rdi			; keep ptr input str
 	call	ft_strlen			; hope that rdi is pass to ft_strlen
 	inc		rax					; inc for NULL str at the end of dst
+
 	mov		rdi, rax			; assign strlen for malloc memory
 	call	malloc wrt ..plt
 	cmp		rax, 0x00			; if (malloc == NULL)
@@ -29,6 +31,4 @@ ft_strdup:
 
 return:
 
-	pop		r13
-	pop		r12
 	ret

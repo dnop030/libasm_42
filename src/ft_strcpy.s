@@ -11,20 +11,16 @@ section .text
 global ft_strcpy
 
 ft_strcpy:
-	mov	rax, rdi			; prep return value
-	jmp	loop
-
-incptr:
-	inc	rsi					; ps2++
-	inc	rdi					; ps1++
+	mov	rax, rdi			; prep output
 
 loop:
-	mov	dl, [rsi]			; cpy byte from src to dst
+	mov	byte dl, [rsi]		; copy from src to dst
 	mov [rdi], dl			;
-	cmp	byte [rsi], 0x00	;
-	jne	incptr				; while (*ps1 != NULL)
 
-	inc rdi					; ps1++
-	mov byte [rdi], 0x00	; *ps1 = NULL
+	inc	rdi					; inc ptr
+	inc	rsi					;
+
+	cmp byte dl, 0x00		; if (*src != NULL)
+	jne	loop				;
 
 	ret

@@ -92,23 +92,23 @@ void test_ft_strcpy() {
 }
 
 void test_ft_strdup() {
-    char *str;
+	char *str;
 
-    // Normal case
-    str = ft_strdup("hello");
-    printf("ft_strdup(\"hello\"): %s\n", str);
-    if (ft_strcmp(str, "hello") != 0) {
-        printf("Error: Expected \"hello\", got \"%s\"\n", str);
-    }
-    free(str);
+	// Normal case
+	str = ft_strdup("hello");
+	printf("ft_strdup(\"hello\"): %s\n", str);
+	if (ft_strcmp(str, "hello") != 0) {
+		printf("Error: Expected \"hello\", got \"%s\"\n", str);
+	}
+	free(str);
 
-    // Corner case
-    str = ft_strdup("");
-    printf("ft_strdup(\"\"): %s\n", str);
-    if (ft_strcmp(str, "") != 0) {
-        printf("Error: Expected \"\", got \"%s\"\n", str);
-    }
-    free(str);
+	// Corner case
+	str = ft_strdup("");
+	printf("ft_strdup(\"\"): %s\n", str);
+	if (ft_strcmp(str, "") != 0) {
+		printf("Error: Expected \"\", got \"%s\"\n", str);
+	}
+	free(str);
 }
 
 void test_ft_write() {
