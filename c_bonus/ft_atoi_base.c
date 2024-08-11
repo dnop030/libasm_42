@@ -10,6 +10,9 @@
 // 	◦ base contains the same character twice ;
 // 	◦ base contains + or - or whitespaces;
 
+int	chk_base_dup(char *base);
+int	chk_prohibit_char(char *base);
+
 int		ft_atoi_base(char *str, char *base)
 {
 	int	base_n = strlen(base);
@@ -17,6 +20,7 @@ int		ft_atoi_base(char *str, char *base)
 	int	prohibit_char = chk_prohibit_char(base);
 
 	printf("dup: %d\n", base_dup);
+	printf("prohibit:%d\n", prohibit_char);
 	if (base_n >= 1) {
 		printf("%s\n", str);
 		printf("len base:%lu\n", strlen(base));
@@ -31,10 +35,10 @@ int	chk_base_dup(char *base)
 	char	*ptr1, *ptr2;
 
 	ptr1 = base;
-	ptr2 = ptr1++;
 
 	while (*ptr1 > 0)
 	{
+		ptr2 = ptr1 + 1;
 		while (*ptr2 > 0)
 		{
 			if (*ptr1 == *ptr2)
@@ -48,5 +52,7 @@ int	chk_base_dup(char *base)
 
 int	chk_prohibit_char(char *base)
 {
+	char	prohi_chr[] = "+- ";
 
+	return 0;
 }
