@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	ft_atoi_base("2423", "0123456789abcdef");
+	ft_atoi_base("A", "0123456789abcdef");
 
 	return 0;
 }

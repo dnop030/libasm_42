@@ -22,7 +22,8 @@ int		ft_atoi_base(char *str, char *base)
 	int	res = 0;
 
 	if ((base_n >= 1) && (base_dup == 0) && (prohibit_char == 0)) {
-		res = conv(str, "0123456789");
+		res = conv(str, "0123456789abcdef");
+		printf("res:%d\n", res);
 	}
 	return 0;
 }
@@ -34,7 +35,10 @@ int	conv(char *str, char *base)
 	int	tmp;
 	while (*str != 0)
 	{
-		tmp = *str - 48;
+		if (*str > 47 && *str < 58)
+			tmp = *str - 48;
+		else if (*str > 64 && *str < 91)
+			tmp = *str - 55;
 		res = (res * mul) + tmp;
 		str++;
 	}
