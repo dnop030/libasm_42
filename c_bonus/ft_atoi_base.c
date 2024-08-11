@@ -12,22 +12,33 @@
 
 int	chk_base_dup(char *base);
 int	chk_prohibit_char(char *base);
+int	conv(char *str, char *base);
 
 int		ft_atoi_base(char *str, char *base)
 {
 	int	base_n = strlen(base);
 	int	base_dup = chk_base_dup(base);
 	int	prohibit_char = chk_prohibit_char(base);
+	int	res = 0;
 
-	printf("dup: %d\n", base_dup);
-	printf("prohibit:%d\n", prohibit_char);
-	if (base_n >= 1) {
-		printf("%s\n", str);
-		printf("len base:%lu\n", strlen(base));
-		printf("%c\n", base[strlen(base)-1]);
+	if ((base_n >= 1) && (base_dup == 0) && (prohibit_char == 0)) {
+		res = conv(str, "0123456789");
 	}
+	return 0;
+}
 
-	return 1;
+int	conv(char *str, char *base)
+{
+	int	res = 0;
+	int	mul = strlen(base);
+	int	tmp;
+	while (*str != 0)
+	{
+		tmp = *str - 48;
+		res = (res * mul) + tmp;
+		str++;
+	}
+	return res;
 }
 
 int	chk_base_dup(char *base)
@@ -35,7 +46,6 @@ int	chk_base_dup(char *base)
 	char	*ptr1, *ptr2;
 
 	ptr1 = base;
-
 	while (*ptr1 > 0)
 	{
 		ptr2 = ptr1 + 1;
@@ -53,6 +63,19 @@ int	chk_base_dup(char *base)
 int	chk_prohibit_char(char *base)
 {
 	char	prohi_chr[] = "+- ";
+	char	*ptr = prohi_chr;
+	char	*ptr_base = base;
 
+	while (*ptr_base != 0)
+	{
+		ptr = prohi_chr;
+		while(*ptr != 0)
+		{
+			if (*ptr_base == *ptr)
+				return 1;
+			ptr++;
+		}
+		ptr_base++;
+	}
 	return 0;
 }
