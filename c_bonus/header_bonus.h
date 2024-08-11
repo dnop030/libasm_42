@@ -2,6 +2,9 @@
 # define HEADER_BONUS_H
 
 # include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
 
 typedef struct	s_list
 {
