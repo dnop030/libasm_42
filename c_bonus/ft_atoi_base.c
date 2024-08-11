@@ -16,6 +16,7 @@ int		ft_atoi_base(char *str, char *base)
 	int	base_dup = chk_base_dup(base);
 	int	prohibit_char = chk_prohibit_char(base);
 
+	printf("dup: %d\n", base_dup);
 	if (base_n >= 1) {
 		printf("%s\n", str);
 		printf("len base:%lu\n", strlen(base));
@@ -37,12 +38,12 @@ int	chk_base_dup(char *base)
 		while (*ptr2 > 0)
 		{
 			if (*ptr1 == *ptr2)
-				break;
+				return 1;
 			ptr2++;
 		}
 		ptr1++;
 	}
-
+	return 0;
 }
 
 int	chk_prohibit_char(char *base)
