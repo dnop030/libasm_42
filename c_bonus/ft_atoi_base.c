@@ -22,10 +22,9 @@ int		ft_atoi_base(char *str, char *base)
 	int	res = 0;
 
 	if ((base_n >= 1) && (base_dup == 0) && (prohibit_char == 0)) {
-		res = conv(str, "0123456789abcdef");
-		printf("res:%d\n", res);
+		res = conv(str, base);
 	}
-	return 0;
+	return res;
 }
 
 int	conv(char *str, char *base)
@@ -33,15 +32,18 @@ int	conv(char *str, char *base)
 	int		res = 0;
 	int		mul = strlen(base);
 	int		tmp;
+	int		sign = 1;
 	char	*tmp_base;
 
+	// move ptr until it found 1st number
+	while (*str < 48)
+	{
+		if (*str == 45)
+			sign = sign * (-1);
+		str++;
+	}
 	while (*str != 0)
 	{
-		// if (*str > 47 && *str < 58)
-		// 	tmp = *str - 48;
-		// else if (*str > 64 && *str < 91)
-		// 	tmp = *str - 55;
-
 		tmp_base = base;
 		// searching for string in base
 		// prevent str not in base
@@ -53,14 +55,13 @@ int	conv(char *str, char *base)
 			return 0;
 		else
 		{
-			printf("base:%p tmp base:%p\n", base, tmp_base);
 			tmp = (tmp_base - base);
 		}
 
 		res = (res * mul) + tmp;
 		str++;
 	}
-	return res;
+	return (res * sign);
 }
 
 int	chk_base_dup(char *base)
