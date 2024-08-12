@@ -59,6 +59,20 @@ syscall ; call the kernel
 | r...   | r...d  | r...w  | r...b |
 | r15    | r15d   | r15w   | r15b  |
 
+# Flag
+
+| bit | name | description           |
+|-----|------|-----------------------|
+| 0   | CF   | Carry flag            |
+| 2   | PF   | Parity flag           |
+| 4   | AE   | Auxilliary carry flag |
+| 6   | ZF   | Zero flag             |
+| 7   | SF   | Sign flag             |
+| 8   | TF   | Trap flag             |
+| 9   | IF   | Interrupt flag        |
+| 10  | DF   | Direction flag        |
+| 11  | OF   | Signed overflow flag  |
+
 # Operatiors
 
 ```asm
