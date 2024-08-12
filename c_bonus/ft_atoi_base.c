@@ -30,15 +30,33 @@ int		ft_atoi_base(char *str, char *base)
 
 int	conv(char *str, char *base)
 {
-	int	res = 0;
-	int	mul = strlen(base);
-	int	tmp;
+	int		res = 0;
+	int		mul = strlen(base);
+	int		tmp;
+	char	*tmp_base;
+
 	while (*str != 0)
 	{
-		if (*str > 47 && *str < 58)
-			tmp = *str - 48;
-		else if (*str > 64 && *str < 91)
-			tmp = *str - 55;
+		// if (*str > 47 && *str < 58)
+		// 	tmp = *str - 48;
+		// else if (*str > 64 && *str < 91)
+		// 	tmp = *str - 55;
+
+		tmp_base = base;
+		// searching for string in base
+		// prevent str not in base
+		while((*tmp_base != *str) && (*tmp_base != 0))
+			tmp_base++;
+
+		// str not in base
+		if (*tmp_base == 0)
+			return 0;
+		else
+		{
+			printf("base:%p tmp base:%p\n", base, tmp_base);
+			tmp = (tmp_base - base);
+		}
+
 		res = (res * mul) + tmp;
 		str++;
 	}
@@ -66,7 +84,7 @@ int	chk_base_dup(char *base)
 
 int	chk_prohibit_char(char *base)
 {
-	char	prohi_chr[] = "+- ";
+	char	prohi_chr[] = "+- \t\n\v\f\r";
 	char	*ptr = prohi_chr;
 	char	*ptr_base = base;
 
