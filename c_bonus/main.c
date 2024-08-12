@@ -61,6 +61,27 @@ void test_list_push_front(t_list **list, char *str)
 	printf("list->next: %p\033[0m\n\n", (*list)->next);
 }
 
+void test_list_size(t_list *list)
+{
+	bonus_test_count++;
+	int ret = ft_list_size(list);
+	int size = 0;
+	while (list)
+	{
+		size++;
+		list = list->next;
+	}
+	if (ret == size)
+		printf("ft_list_size: \x1b[32mOK\n\n");
+	else
+	{
+		printf("ft_list_size: \x1b[31mKO\n\n");
+		bonus_failed++;
+	}
+	printf("list size: %d\n", size);
+	printf("ft_list_size: %d\033[0m\n\n", ret);
+}
+
 int	main(void)
 {
 	// test atoi_base
@@ -88,6 +109,10 @@ int	main(void)
 	test_list_push_front(&list, "2");
 	test_list_push_front(&list, "3");
 	test_list_push_front(&list, "4");
+
+	// test list_size
+	test_list_size(list);
+	test_list_size(NULL);
 
 	return 0;
 }
