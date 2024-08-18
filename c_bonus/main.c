@@ -150,24 +150,33 @@ int	main(void)
 	// test list_remove_if
 	t_list *list_remove_if = NULL;
 	ft_list_push_front(&list_remove_if, strdup("1"));
-	// ft_list_push_front(&list_remove_if, strdup("1"));
+	ft_list_push_front(&list_remove_if, strdup("1"));
 	ft_list_push_front(&list_remove_if, strdup("2"));
 	ft_list_push_front(&list_remove_if, strdup("1"));
 	ft_list_push_front(&list_remove_if, strdup("1"));
 	ft_list_push_front(&list_remove_if, strdup("3"));
 	ft_list_push_front(&list_remove_if, strdup("4"));
 	ft_list_push_front(&list_remove_if, strdup("5"));
-	// ft_list_push_front(&list_remove_if, strdup("1"));
 	ft_list_push_front(&list_remove_if, strdup("1"));
-
-
-	printf("\nShow list before remove if\n\n");
-	show_list(list_remove_if);
+	ft_list_push_front(&list_remove_if, strdup("1"));
 
 	test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
 
 	// printf("\nShow list after remove if\n\n");
 	// show_list(list_remove_if);
+
+
+	// other corner case
+	// // test list_remove_if
+	// t_list *list_remove_if = NULL;
+	// ft_list_push_front(&list_remove_if, strdup("1"));
+	// // ft_list_push_front(&list_remove_if, strdup("1"));
+	// ft_list_push_front(&list_remove_if, strdup("1"));
+
+	// printf("\nShow list before remove if\n\n");
+	// show_list(list_remove_if);
+
+	// test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
 
 	return 0;
 }
