@@ -16,10 +16,10 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 		prev_n = NULL;
 		pres_n = head_new;
 
-		// finding node which value more than 1st node of old linklist
+		// finding position of 1st node in old linklist in new linklist
 		while (pres_n != NULL)
 		{
-			// need to add node before pres_n
+			
 			diff = (*cmp)((*begin_list)->data, pres_n->data);
 			if (diff > 0)
 				break;
@@ -30,10 +30,12 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 		// move node from old linklist to new linklist
 		tmp_n = *begin_list;
 		*begin_list = (*begin_list)->next;
+		tmp_n->next = NULL;
+
 		if (prev_n == NULL)
 		{
-			head_new->next = tmp_n;
-			tmp_n->next = NULL;
+			tmp_n->next = head_new;
+			head_new = tmp_n;
 		}
 		else if (pres_n == NULL)
 		{
@@ -45,6 +47,21 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 			prev_n->next = tmp_n;
 			tmp_n->next = pres_n;
 		}
+		// if (prev_n == NULL)
+		// {
+		// 	head_new->next = tmp_n;
+		// 	tmp_n->next = NULL;
+		// }
+		// else if (pres_n == NULL)
+		// {
+		// 	prev_n->next = tmp_n;
+		// 	tmp_n->next = NULL;
+		// }
+		// else
+		// {
+		// 	prev_n->next = tmp_n;
+		// 	tmp_n->next = pres_n;
+		// }
 	}
 	*begin_list = head_new;
 }
