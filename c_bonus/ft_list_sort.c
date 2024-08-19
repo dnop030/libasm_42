@@ -1,6 +1,50 @@
 #include "header_bonus.h"
 
+// insertion sort
 void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 {
+	volatile t_list	*head_old, *head_new, *prev_n, *pres_n, *tmp_n;
+	int	diff;
 
+	head_new = *begin_list;
+	*begin_list = (*begin_list)->next;
+	head_new->next = NULL;
+
+	// sorting from old linklist to new linklist
+	while (*begin_list != NULL)
+	{
+		prev_n = NULL;
+		pres_n = head_new;
+
+		// finding node which value more than 1st node of old linklist
+		while (pres_n != NULL)
+		{
+			// need to add node before pres_n
+			diff = (*cmp)((*begin_list)->data, pres_n->data);
+			if (diff > 0)
+				break;
+			prev_n = pres_n;
+			pres_n = pres_n->next;
+		}
+
+		// move node from old linklist to new linklist
+		tmp_n = *begin_list;
+		*begin_list = (*begin_list)->next;
+		if (prev_n == NULL)
+		{
+			head_new->next = tmp_n;
+			tmp_n->next = NULL;
+		}
+		else if (pres_n == NULL)
+		{
+			prev_n->next = tmp_n;
+			tmp_n->next = NULL;
+		}
+		else
+		{
+			prev_n->next = tmp_n;
+			tmp_n->next = pres_n;
+		}
+	}
+	*begin_list = head_new;
 }
