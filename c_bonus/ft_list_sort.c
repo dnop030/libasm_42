@@ -53,37 +53,6 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 				tmp_n->next = pres_n;
 			}
 		}
-
-		// if (prev_n == NULL)
-		// {
-		// 	tmp_n->next = head_new;
-		// 	head_new = tmp_n;
-		// }
-		// else if (pres_n == NULL)
-		// {
-		// 	prev_n->next = tmp_n;
-		// 	tmp_n->next = NULL;
-		// }
-		// else
-		// {
-		// 	prev_n->next = tmp_n;
-		// 	tmp_n->next = pres_n;
-		// }
-		// if (prev_n == NULL)
-		// {
-		// 	head_new->next = tmp_n;
-		// 	tmp_n->next = NULL;
-		// }
-		// else if (pres_n == NULL)
-		// {
-		// 	prev_n->next = tmp_n;
-		// 	tmp_n->next = NULL;
-		// }
-		// else
-		// {
-		// 	prev_n->next = tmp_n;
-		// 	tmp_n->next = pres_n;
-		// }
 	}
 	*begin_list = head_new;
 }
