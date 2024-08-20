@@ -36,17 +36,18 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 		*begin_list = (*begin_list)->next;
 		tmp_n->next = NULL;
 
+		// add to last node
 		if (pres_n == NULL)
-		{
 			prev_n->next = tmp_n;
-		}
 		else
 		{
+			// add to 1st node
 			if (prev_n == NULL)
 			{
 				tmp_n->next = head_new;
 				head_new = tmp_n;
 			}
+			// add in the middle of linklist
 			else
 			{
 				prev_n->next = tmp_n;
