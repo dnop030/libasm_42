@@ -3,8 +3,10 @@
 // insertion sort
 void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 {
-	volatile t_list	*head_old, *head_new, *prev_n, *pres_n, *tmp_n;
-	int	diff;
+	t_list	*head_new, *prev_n, *pres_n, *tmp_n;
+
+	if (begin_list == NULL || (*begin_list) == NULL || (*cmp) == NULL)
+		return;
 
 	head_new = *begin_list;
 	*begin_list = (*begin_list)->next;
@@ -19,8 +21,7 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 		// finding position of 1st node in old linklist in new linklist
 		while (pres_n != NULL)
 		{
-			diff = (*cmp)((*begin_list)->data, pres_n->data);
-			if (diff < 0)
+			if ((*cmp)((*begin_list)->data, pres_n->data) < 0)
 			{
 				break;
 			}
