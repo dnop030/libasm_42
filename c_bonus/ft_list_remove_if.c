@@ -1,8 +1,8 @@
 #include "header_bonus.h"
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *, void *), 
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *, void *),
 							void (*free_fct)(void *))
-{	
+{
 	// volatile t_list	*prev_node, *pres_node, *del_node;
 	t_list	*prev_node, *pres_node, *del_node;
 
@@ -28,18 +28,19 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *, v
 				prev_node = prev_node->next;
 			pres_node = pres_node->next;
 
-			// delete node
-			(*free_fct)(del_node->data);
-			free(del_node);
-
 			// connect linklist
 			if (prev_node != NULL)
 			{
-				if (pres_node->next == NULL)
+				if (pres_node == NULL)
 					prev_node->next = NULL;
 				else
 					prev_node->next = pres_node;
 			}
+
+			// delete node
+			(*free_fct)(del_node->data);
+			free(del_node);
+
 		}
 		else
 		{
