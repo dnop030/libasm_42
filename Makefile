@@ -12,9 +12,6 @@ MAIN = main.c
 # bonus file
 BONUS_MAIN = main_bonus.c
 
-# bonus file
-BONUS_MAIN = main_bonus.c
-
 # Mandatory sources
 MAN_SRC = ft_write.s \
 			ft_strlen.s \
@@ -24,11 +21,11 @@ MAN_SRC = ft_write.s \
 			ft_strdup.s
 
 # Bonus sources
-BONUS_SRC = ft_atoi_base.c \
-			ft_list_push_front.c \
-			ft_list_size.c \
-			ft_list_remove_if.c \
-			ft_list_sort.c
+BONUS_SRC = ft_atoi_base.s \
+			# ft_list_push_front.s \
+			# ft_list_size.s \
+			# ft_list_remove_if.s \
+			# ft_list_sort.s
 
 # src dir
 DIR = src
@@ -53,8 +50,8 @@ LINKER = ar rcs
 
 MAN_ASM_OBJ = $(addprefix $(OUTPUT_DIR)/, $(MAN_SRC:.s=.o))
 MAIN_OBJ = $(OUTPUT_DIR)/$(MAIN:.c=.o)
-BONUS_ASM_OBJ = $(addprefix $(BONUS_OUTPUT_DIR)/, $(BONUS_SRC:.c=.o))
-BONUS_OBJ = $(BONUS_OUTPUT_DIR)/$(BONUS_MAIN:.c=.o)
+BONUS_ASM_OBJ = $(addprefix $(BONUS_OUTPUT_DIR)/, $(BONUS_SRC:.s=.o))
+MAIN_BONUS_OBJ = $(BONUS_OUTPUT_DIR)/$(BONUS_MAIN:.c=.o)
 
 # Rules
 all: $(LIB_NAME)
@@ -80,14 +77,19 @@ bonus: $(BONUS_LIB_NAME)
 
 $(BONUS_LIB_NAME): $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
 	$(LINKER) $(BONUS_LIB_NAME) $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
-	echo "Bonus Lib Done!"
+	@echo "Bonus Lib Done!"
 
-$(BONUS_OUTPUT_DIR)/%.o: $(BONUS_DIR)/%.c
+$(BONUS_OUTPUT_DIR)/%.o: $(BONUS_DIR)/%.s
 	mkdir -p $(BONUS_OUTPUT_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(AS) $(ASFLAGS) $< -o $@
 
-test_bonus: bonus $(BONUS_OBJ)
-	$(CC) -o $(BONUS_NAME) $(CFLAGS) $(BONUS_OBJ) -L. -lasm
+$(MAIN_BONUS_OBJ): $(BONUS_DIR)/$(BONUS_MAIN)
+	@mkdir -p $(BONUS_OUTPUT_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Main Bonus test Lib Done!"
+
+test_bonus: bonus $(MAIN_BONUS_OBJ)
+	$(CC) -o $(BONUS_NAME) $(CFLAGS) $(MAIN_BONUS_OBJ) -L. -lasm
 
 clean:
 	@rm -rf $(OUTPUT_DIR)
