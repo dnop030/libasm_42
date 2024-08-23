@@ -62,7 +62,7 @@ $(LIB_NAME): $(MAN_ASM_OBJ)
 
 $(OUTPUT_DIR)/%.o: $(DIR)/%.s
 	@mkdir -p $(OUTPUT_DIR)
-	@$(AS) $(ASFLAGS) $< -o $@
+	@$(AS) $(ASFLAGS) -g $< -o $@
 
 $(MAIN_OBJ): $(DIR)/$(MAIN)
 	@mkdir -p $(OUTPUT_DIR)
@@ -81,15 +81,15 @@ $(BONUS_LIB_NAME): $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
 
 $(BONUS_OUTPUT_DIR)/%.o: $(BONUS_DIR)/%.s
 	mkdir -p $(BONUS_OUTPUT_DIR)
-	$(AS) $(ASFLAGS) $< -o $@
+	$(AS) $(ASFLAGS) -g $< -o $@
 
 $(MAIN_BONUS_OBJ): $(BONUS_DIR)/$(BONUS_MAIN)
 	@mkdir -p $(BONUS_OUTPUT_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -g -c $< -o $@
 	@echo "Main Bonus test Lib Done!"
 
 test_bonus: bonus $(MAIN_BONUS_OBJ)
-	$(CC) -o $(BONUS_NAME) $(CFLAGS) $(MAIN_BONUS_OBJ) -L. -lasm
+	$(CC) -o $(BONUS_NAME) $(CFLAGS) -g $(MAIN_BONUS_OBJ) -L. -lasm
 
 clean:
 	@rm -rf $(OUTPUT_DIR)

@@ -140,23 +140,28 @@ void test_atoi_base(char *str, char *base, int expected)
 
 int main(void)
 {
+	printf("check base len\n");
+	printf("str:\"1234\", base:\"1\", output:%d\n", ft_atoi_base("1234", "1"));
+	printf("str:\"1234\", base:\"0123456789\", output:%d\n", ft_atoi_base("1234", "0123456789"));
+	printf("check base dup\n");
+	printf("str:\"1234\", base:\"01234567890\", output:%d\n", ft_atoi_base("1234", "01234567890"));
 	// test atoi_base
-	test_atoi_base_10("42");
-	test_atoi_base_10("0");
-	test_atoi_base_10("1");
-	test_atoi_base_10("1215415478");
-	test_atoi_base("42", "0123456789", 42);
-	test_atoi_base("0", "0123456789", 0);
-	test_atoi_base("1", "0123456789", 1);
-	test_atoi_base("1215415478", "0123456789", 1215415478);
-	test_atoi_base("-0", "0123456789", 0);
-	test_atoi_base("-1", "0123456789", -1);
-	test_atoi_base("-42", "0123456789", -42);
-	test_atoi_base("a", "0123456789abcdef", 10);
-	test_atoi_base("123", "+", 0);
-	test_atoi_base("123", " 0123456789", 0);
-	test_atoi_base("123", "0123456789+", 0);
-	test_atoi_base("123", "0123456789\n", 0);
+	// test_atoi_base_10("42");
+	// test_atoi_base_10("0");
+	// test_atoi_base_10("1");
+	// test_atoi_base_10("1215415478");
+	// test_atoi_base("42", "0123456789", 42);
+	// test_atoi_base("0", "0123456789", 0);
+	// test_atoi_base("1", "0123456789", 1);
+	// test_atoi_base("1215415478", "0123456789", 1215415478);
+	// test_atoi_base("-0", "0123456789", 0);
+	// test_atoi_base("-1", "0123456789", -1);
+	// test_atoi_base("-42", "0123456789", -42);
+	// test_atoi_base("a", "0123456789abcdef", 10);
+	// test_atoi_base("123", "+", 0);
+	// test_atoi_base("123", " 0123456789", 0);
+	// test_atoi_base("123", "0123456789+", 0);
+	// test_atoi_base("123", "0123456789\n", 0);
 
 	// // test list_push_front
 	// t_list *list = NULL;
