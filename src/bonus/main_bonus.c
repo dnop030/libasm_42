@@ -140,13 +140,23 @@ void test_atoi_base(char *str, char *base, int expected)
 
 int main(void)
 {
-	printf("check base len\n");
-	printf("str:\"1234\", base:\"1\", output:%d\n", ft_atoi_base("1234", "1"));
-	printf("str:\"1234\", base:\"0123456789\", output:%d\n", ft_atoi_base("1234", "0123456789"));
-	printf("check base dup\n");
-	printf("str:\"1234\", base:\"01234567890\", output:%d\n", ft_atoi_base("1234", "01234567890"));
+	// printf("check base len\n");
+	// printf("str:\"1234\", base:\"1\", output:%d\n", ft_atoi_base("1234", "1"));
+	// printf("str:\"1234\", base:\"0123456789\", output:%d\n", ft_atoi_base("1234", "0123456789"));
+	// printf("check base dup\n");
+	// printf("str:\"1234\", base:\"01234567890\", output:%d\n", ft_atoi_base("1234", "01234567890"));
+	// printf("check base prohibit\n");
+	// printf("str:\"1234\", base:\"0123456789+\", output:%d\n", ft_atoi_base("1234", "0123456789+"));
+	// printf("str:\"1234\", base:\"0123456789-\", output:%d\n", ft_atoi_base("1234", "0123456789-"));
+	// printf("str:\"1234\", base:\"0123456789 \", output:%d\n", ft_atoi_base("1234", "0123456789 "));
+	// printf("str:\"1234\", base:\"0123456789\t\", output:%d\n", ft_atoi_base("1234", "0123456789\t"));
+	// printf("str:\"1234\", base:\"0123456789\n\", output:%d\n", ft_atoi_base("1234", "0123456789\n"));
+	// printf("str:\"1234\", base:\"0123456789\v\", output:%d\n", ft_atoi_base("1234", "0123456789\v"));
+	// printf("str:\"1234\", base:\"0123456789\f\", output:%d\n", ft_atoi_base("1234", "0123456789\f"));
+	// printf("str:\"1234\", base:\"0123456789\r\", output:%d\n", ft_atoi_base("1234", "0123456789\r"));
+
 	// test atoi_base
-	// test_atoi_base_10("42");
+	test_atoi_base_10("42");
 	// test_atoi_base_10("0");
 	// test_atoi_base_10("1");
 	// test_atoi_base_10("1215415478");
