@@ -21,7 +21,7 @@ int		ft_atoi_base(char *str, char *base)
 	int	prohibit_char = chk_prohibit_char(base);
 	int	res = 0;
 
-	if ((base_n >= 1) && (base_dup == 0) && (prohibit_char == 0)) {
+	if ((base_n > 1) && (base_dup == 0) && (prohibit_char == 0)) {
 		res = conv(str, base);
 	}
 	return res;
