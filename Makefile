@@ -66,7 +66,7 @@ $(OUTPUT_DIR)/%.o: $(DIR)/%.s
 
 $(MAIN_OBJ): $(DIR)/$(MAIN)
 	@mkdir -p $(OUTPUT_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -g -c $< -o $@
 	@echo "Main test Lib Done!"
 
 test: all $(MAIN_OBJ)
