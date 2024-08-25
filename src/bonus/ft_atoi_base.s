@@ -44,10 +44,10 @@ ft_atoi_base:
 	jne		ret_err
 
 	mov		rdi, r13
+	call	chk_prohibit_char
+	cmp		rax, 0
+	jne		ret_err
 
-	mov		rax, 3
-	jmp		ret_output
-;	call	chk_prohibit_char
 
 
 ret_err:
@@ -82,7 +82,7 @@ loop_ptr2:
 
 set_err_output:
 	mov		rax, 1
-	
+
 ret_base_dup:
 	ret
 
@@ -149,7 +149,7 @@ ret_prohibit:
 ;
 ;	inc		r13
 ;	jmp		chk_base_dup
-;	
+;
 ;	; chk prohibit charactor
 ;	mov		r13, rsi			; reload base ptr
 ;chk_prohibit_char:
@@ -207,6 +207,6 @@ ret_prohibit:
 ;
 ;ret_err:
 ;	mov		rax, 0
-;	
+;
 ;ret_output:
 ;	ret
