@@ -36,7 +36,8 @@ int	conv(char *str, char *base)
 	char	*tmp_base;
 
 	// move ptr until it found 1st number
-	while (*str < 48)
+	while ((*str != 0) && (*str < 48))
+	// while (*str < 48)
 	{
 		if (*str == 45)
 			sign = sign * (-1);

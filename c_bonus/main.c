@@ -157,6 +157,7 @@ int main(void)
 	test_atoi_base("123", " 0123456789", 0);
 	test_atoi_base("123", "0123456789+", 0);
 	test_atoi_base("123", "0123456789\n", 0);
+	test_atoi_base("----", "0123456789\n", 0);
 
 	// test list_push_front
 	t_list *list = NULL;
