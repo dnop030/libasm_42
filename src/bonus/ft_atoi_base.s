@@ -48,7 +48,10 @@ ft_atoi_base:
 	cmp		rax, 0
 	jne		ret_err
 
-
+	mov		rdi, r12
+	mov		rsi, r13
+	call	conv_val
+	jmp		ret_output
 
 ret_err:
 	mov		rax, 0
@@ -88,6 +91,8 @@ ret_base_dup:
 
 
 ;Register Usage
+;rdi - ptr1, base str
+;bl - tmp_cmp
 chk_prohibit_char:
 	mov		rax, 0			; set output = 0
 
@@ -119,6 +124,71 @@ set_err_out:
 
 ret_prohibit:
 	ret
+
+;Register Usage
+;rdi - *str
+;rsi - *base
+;r13 - *tmp_base
+;r14 - *tmp_str
+;r15 - tmp val
+;rcx - mul <= base length
+;r0 - sign (-1)
+;rax - output
+conv_val:
+	mov		r13, rsi		; reserve base str ptr
+	mov		r14, rdi		; reserve str str ptr
+
+get_base_len:
+	mov		rdi, rsi
+	call	ft_strlen
+	mov		rcx, rax
+
+	mov		rdi, r14		; init str
+start_cal:	
+	mov		r9, 1			; init sign val
+	mov		rax, 0			; init output val
+chk_neg:
+	mov		byte bl, [rdi]
+	cmp		byte bl, 0
+	je		loop_str
+	cmp		byte bl, '0'
+	jge		loop_str
+	cmp		byte bl, '-'
+	jne		inc_neg
+	neg		r9
+inc_neg:
+	inc		rdi
+	jmp		chk_neg
+
+loop_str:
+	mov		byte bl, [rdi]	; while(*str != 0)
+	cmp		byte bl, 0		;
+	je		ret_conv_val
+
+	mov		rsi, r13		; 	tmp_base = base
+loop_base:
+	cmp		byte [rsi], 0
+	mov		rax, 0			; risk ++++++++++++++++++
+	je		ret_conv_val	; risk ++++++++++++++++++
+	cmp		byte [rsi], bl
+	je		cal_output
+	inc		r13
+cal_output:
+	mov		r15, rsi
+	sub		r15, r13
+	mul		rcx
+	add		rax, r15
+	inc		rdi
+	jmp		loop_str
+
+ret_conv_val:
+	mul		r9
+	ret
+
+
+
+
+
 
 
 
