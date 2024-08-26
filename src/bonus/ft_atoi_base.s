@@ -20,7 +20,6 @@ section .text
 ;rsi - base ,string base number
 ;r12 - tmp_str ,string input
 ;r13 - tmp_base ,string base number
-;r14 - strlen(str) ++++++++++++++++++++++++++++
 ;rcx - ptr ,tempolary ptr
 ;rbx - sign mul
 ;$rax - res, result of convert(ruturn value of differential of string)
@@ -34,18 +33,18 @@ ft_atoi_base:
 	mov		r13, rsi			; preserve input
 
 	mov		rdi, r13
-	call	ft_strlen
-	cmp		rax, 2
+	call	ft_strlen			; if (strlen(base) < 2)
+	cmp		rax, 2				;	return 0;
 	jl		ret_err
 
 	mov		rdi, r13
-	call	chk_base_dup
-	cmp		rax, 0
+	call	chk_base_dup		; if (chk_base_dup != 0)
+	cmp		rax, 0				;	return 0;
 	jne		ret_err
 
 	mov		rdi, r13
-	call	chk_prohibit_char
-	cmp		rax, 0
+	call	chk_prohibit_char	; if (chk_prohibit_char != 0)
+	cmp		rax, 0				;	return 0;
 	jne		ret_err
 
 	mov		rdi, r12
@@ -61,30 +60,30 @@ ret_output:
 
 
 ;Register Usage
-;rdi - ptr1
-;rcx - ptr2
+;rdi - ptr1 = base
+;rcx - ptr2 = base + 1
 ;bl - *ptr1
 ;rax - output
 chk_base_dup:
-	mov		rax, 0			; set output = 0
+	mov		rax, 0				; set output = 0
 	jmp		loop_ptr1
 
 inc_ptr1:
 	inc		rdi
 loop_ptr1:
-	cmp		byte [rdi], 0
-	je		ret_base_dup
-	mov		byte bl, [rdi]
-	mov		rcx, rdi
+	cmp		byte [rdi], 0		; while (*base != 0)
+	je		ret_base_dup		; {
+	mov		byte bl, [rdi]		;
+	mov		rcx, rdi			;
 loop_ptr2:
-	inc		rcx
-	cmp		byte [rcx], 0
-	je		inc_ptr1
-	cmp		byte bl, [rcx]
-	jne		loop_ptr2
+	inc		rcx					;	ptr2 = ptr1 + 1
+	cmp		byte [rcx], 0		;	while (*ptr2 != 0) {
+	je		inc_ptr1			;
+	cmp		byte bl, [rcx]		;		if (*ptr2 == *ptr1)
+	jne		loop_ptr2			;
 
 set_err_output:
-	mov		rax, 4
+	mov		rax, 1				; 			return 1}}
 
 ret_base_dup:
 	ret
@@ -94,7 +93,7 @@ ret_base_dup:
 ;rdi - ptr1, base str
 ;bl - tmp_cmp
 chk_prohibit_char:
-	mov		rax, 0			; set output = 0
+	mov		rax, 0				; set output = 0
 
 cmp_prohibit:
 	mov		byte bl, [rdi]
@@ -184,99 +183,3 @@ cal_output:
 ret_conv_val:
 	mul		r9
 	ret
-
-
-
-
-
-
-
-
-;ft_atoi_base:
-;	mov		r12, rdi			;preserve input
-;	mov		r13, rsi			;preserve input
-;
-;chk_base_len:
-;	mov		rdi, r13			;if (*base < 2)
-;	call	ft_strlen			;	return 0
-;	cmp		rax, 2				;
-;	jl		ret_err				;else
-;	mov		r14, rax			;	base_len
-;
-;	; chk base duplication
-;chk_base_dup:
-;	mov		byte bl, [r13]
-;	cmp		byte bl, 0
-;	je		chk_prohibit_char
-;	mov		rcx, r13
-;inc_ptr_dup:
-;	cmp		byte [rcx], bl
-;	inc		rcx
-;	je		ret_err
-;
-;	cmp		byte [rcx], 0
-;	jne		inc_ptr_dup
-;
-;	inc		r13
-;	jmp		chk_base_dup
-;
-;	; chk prohibit charactor
-;	mov		r13, rsi			; reload base ptr
-;chk_prohibit_char:
-;	cmp		byte [r13], '-'
-;	je		ret_err
-;	cmp		byte [r13], '+'
-;	je		ret_err
-;	cmp		byte [r13], ' '
-;	je		ret_err
-;	cmp		byte [r13], '\t'
-;	je		ret_err
-;	cmp		byte [r13], '\n'
-;	je		ret_err
-;	cmp		byte [r13], '\v'
-;	je		ret_err
-;	cmp		byte [r13], '\f'
-;	je		ret_err
-;	cmp		byte [r13], '\r'
-;	je		ret_err
-;inc_ptr_prohibit:
-;	inc		r13
-;	cmp		byte [r13], 0
-;	jne		chk_prohibit_char
-;
-;	; convert value
-;	xor		rax, rax			; res = 0
-;	mov		rdi, r12			; reset addr of rdi
-;	mov		rbx, 1				; assign sign to 1
-;cal_neg:
-;	cmp		byte [rdi], '0'
-;	jge		cal_val
-;	cmp		byte [rdi], '-'
-;	jne		inc_ptr_sign
-;	neg		rbx
-;inc_ptr_sign:
-;	inc		rdi
-;	jmp		cal_neg
-;
-;	; 1 char of number is pointed by rdi
-;cal_val:
-;	mov		byte al, [rdi]
-;	mov		r13, rsi			; reload base ptr
-;find_char_in_base:
-;	cmp		al, [r13]
-;	je		get_val
-;	cmp		byte [r13], 0
-;	je		ret_err
-;	inc		r13
-;	jmp		find_char_in_base
-;
-;get_val:
-;;	sub		r13, rsi
-;	mov		rax, r13
-;	jmp		ret_output
-;
-;ret_err:
-;	mov		rax, 0
-;
-;ret_output:
-;	ret
