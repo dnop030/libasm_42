@@ -103,4 +103,8 @@ fclean: clean
 
 re: clean all
 
+re_test: fclean all
+
+re_bonus: fclean test_bonus
+
 .PHONY: all clean fclean re
