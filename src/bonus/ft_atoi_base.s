@@ -84,7 +84,7 @@ loop_ptr2:
 	jne		loop_ptr2
 
 set_err_output:
-	mov		rax, 1
+	mov		rax, 4
 
 ret_base_dup:
 	ret
@@ -106,15 +106,15 @@ cmp_prohibit:
 	je		set_err_out
 	cmp		byte bl, ' '
 	je		set_err_out
-	cmp		byte bl, '\t'
+	cmp		byte bl, 0x09 ; '\t'
 	je		set_err_out
-	cmp		byte bl, '\n'
+	cmp		byte bl, 0x0a ; '\n'
 	je		set_err_out
-	cmp		byte bl, '\v'
+	cmp		byte bl, 0x0b ; '\v'
 	je		set_err_out
-	cmp		byte bl, 'f'
+	cmp		byte bl, 0x0c ; '\f'
 	je		set_err_out
-	cmp		byte bl, 'r'
+	cmp		byte bl, 0x0d ; '\r'
 	je		set_err_out
 	inc		rdi
 	jmp		cmp_prohibit
@@ -144,7 +144,7 @@ get_base_len:
 	mov		rcx, rax
 
 	mov		rdi, r14		; init str
-start_cal:	
+start_cal:
 	mov		r9, 1			; init sign val
 	mov		rax, 0			; init output val
 chk_neg:
@@ -168,11 +168,11 @@ loop_str:
 	mov		rsi, r13		; 	tmp_base = base
 loop_base:
 	cmp		byte [rsi], 0
-	mov		rax, 0			; risk ++++++++++++++++++
-	je		ret_conv_val	; risk ++++++++++++++++++
+	je		ret_conv_val
 	cmp		byte [rsi], bl
 	je		cal_output
-	inc		r13
+	inc		rsi
+	jmp		loop_base
 cal_output:
 	mov		r15, rsi
 	sub		r15, r13

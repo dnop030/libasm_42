@@ -37,29 +37,29 @@ void test_atoi_base(char *str, char *base, int expected)
 	printf("ft_atoi_base: %d\033[0m\n\n", ret);
 }
 
-// void test_list_push_front(t_list **list, char *str)
-// {
-// 	bonus_test_count++;
-// 	printf("before: %p\n",*list);
-// 	ft_list_push_front(list, str);
-// 	printf("after: %p\n\n",*list);
-// 	if (!list)
-// 	{
-// 		printf("ft_list_push_front: \x1b[31mKO\n\n");
-// 		printf("failed to malloc\n\n");
-// 		bonus_failed++;
-// 		return ;
-// 	}
-// 	if (*list && !strcmp((*list)->data, str))
-// 		printf("ft_list_push_front: \x1b[32mOK\n\n");
-// 	else
-// 	{
-// 		printf("ft_list_push_front: \x1b[31mKO\n\n");
-// 		bonus_failed++;
-// 	}
-// 	printf("list->data: %s\n", (char *)(*list)->data);
-// 	printf("list->next: %p\033[0m\n\n", (*list)->next);
-// }
+void test_list_push_front(t_list **list, char *str)
+{
+	bonus_test_count++;
+	printf("before: %p\n",*list);
+	ft_list_push_front(list, str);
+	printf("after: %p\n\n",*list);
+	if (!list)
+	{
+		printf("ft_list_push_front: \x1b[31mKO\n\n");
+		printf("failed to malloc\n\n");
+		bonus_failed++;
+		return ;
+	}
+	if (*list && !strcmp((*list)->data, str))
+		printf("ft_list_push_front: \x1b[32mOK\n\n");
+	else
+	{
+		printf("ft_list_push_front: \x1b[31mKO\n\n");
+		bonus_failed++;
+	}
+	printf("list->data: %s\n", (char *)(*list)->data);
+	printf("list->next: %p\033[0m\n\n", (*list)->next);
+}
 
 // void test_list_size(t_list *list)
 // {
@@ -140,23 +140,7 @@ void test_atoi_base(char *str, char *base, int expected)
 
 int main(void)
 {
-	// printf("check base len\n");
-	// printf("str:\"1234\", base:\"1\", output:%d\n", ft_atoi_base("1234", "1"));
-	// printf("str:\"0111\", base:\"01\", output:%d\n", ft_atoi_base("0111", "01"));
-	// printf("check base dup\n");
-	// printf("str:\"1234\", base:\"01234567890\", output:%d\n", ft_atoi_base("1234", "01234567890"));
-	// printf("check base prohibit\n");
-	// printf("str:\"1234\", base:\"0123456789+\", output:%d\n", ft_atoi_base("1234", "0123456789+"));
-	// printf("str:\"1234\", base:\"0123456789-\", output:%d\n", ft_atoi_base("1234", "0123456789-"));
-	// printf("str:\"1234\", base:\"0123456789 \", output:%d\n", ft_atoi_base("1234", "0123456789 "));
-	// printf("str:\"1234\", base:\"0123456789\t\", output:%d\n", ft_atoi_base("1234", "0123456789\t"));
-	// printf("str:\"1234\", base:\"0123456789\n\", output:%d\n", ft_atoi_base("1234", "0123456789\n"));
-	// printf("str:\"1234\", base:\"0123456789\v\", output:%d\n", ft_atoi_base("1234", "0123456789\v"));
-	// printf("str:\"1234\", base:\"0123456789\f\", output:%d\n", ft_atoi_base("1234", "0123456789\f"));
-	// printf("str:\"1234\", base:\"0123456789\r\", output:%d\n", ft_atoi_base("1234", "0123456789\r"));
-	printf("str:\"10\", base:\"0123456789\", output:%d\n", ft_atoi_base("10", "0123456789"));
-
-	// test atoi_base
+	// // test atoi_base
 	// test_atoi_base_10("42");
 	// test_atoi_base_10("0");
 	// test_atoi_base_10("1");
@@ -174,9 +158,9 @@ int main(void)
 	// test_atoi_base("123", "0123456789+", 0);
 	// test_atoi_base("123", "0123456789\n", 0);
 
-	// // test list_push_front
-	// t_list *list = NULL;
-	// test_list_push_front(&list, "1");
+	// test list_push_front
+	t_list *list = NULL;
+	test_list_push_front(&list, "1");
 	// test_list_push_front(&list, "0");
 	// test_list_push_front(&list, "2");
 	// test_list_push_front(&list, "3");
