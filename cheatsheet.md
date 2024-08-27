@@ -44,6 +44,18 @@ syscall ; call the kernel
 ```
 [Linux System Call Table](https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/)
 
+## errno_location
+
+```asm
+syscall
+cmp		rax, -1						; compare result from of output syscall in rax
+jg		return						; return success
+call	__errno_location wrt ..plt	; errno_location return to rax
+pop		rdx							; pop return error of syscall to whatever reg
+neg		rdx
+mov		byte [rdx], dl
+```
+
 ## Full register table
 
 | 64-bit | 32-bit | 16-bit | 8-bit |
