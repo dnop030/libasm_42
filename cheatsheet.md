@@ -49,7 +49,7 @@ syscall ; call the kernel
 ```asm
 syscall
 cmp		rax, -1						; compare result from of output syscall in rax
-jg		return						; return success
+jg		return						; if success return 0. if not, do next process
 push	rax							; keep error status in stack
 call	__errno_location wrt ..plt	; errno_location return to rax
 pop		rdx							; pop return error of syscall to whatever reg
