@@ -54,7 +54,7 @@ push	rax							; keep error status in stack
 call	__errno_location wrt ..plt	; errno_location return to rax
 pop		rdx							; pop return error of syscall to whatever reg
 neg		rdx
-mov		byte [rdx], dl
+mov		byte [rax], dl
 ```
 
 ## Full register table
