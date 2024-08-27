@@ -4,15 +4,17 @@
 section .bss
 
 struc t_list
-	data: resq	1
-	next: resq	1
+	.data: resq	1
+	.next: resq	1
 endstruc
 
 section .data
 
-t_list_size equ $-t_list
+
 
 section .text
+
+;t_list_size equ $-t_list
 
 ;Register usage:
 ;r12 - **begin_list
@@ -41,19 +43,20 @@ return:
 
 
 ;Register usage:
-;r12 - *data
+;r15 - *data
 ;rbx - tmp for err status of malloc
 ft_create_elem:
 	xor		rax, rax				; reset output
-	mov		r12, rdi				; preserve input
+	mov		r15, rdi				; preserve input
 
-	mov		rdi, t_list_size
-	call	malloc
+;	mov		rdi, t_list_size
+	mov		rdi, 16
+	call	malloc wrt ..plt
 	cmp		rax, 0
 	je		set_err
 
-	mov		[rax + t_list.data], r12
-	mov		[rax + t_list.next], 0
+	mov		[rax + t_list.data], r15
+	mov		qword [rax + t_list.next], 0 ; should be qword
 	ret
 
 set_err:
