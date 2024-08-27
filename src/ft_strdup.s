@@ -31,6 +31,12 @@ ft_strdup:
 	mov		rax, r13			; prep return value
 
 set_errno:
+	push	rax								; store err in stack
+	call	__errno_location wrt ..plt		; call errno location
+	pop		rdx								; pop err from stack
+	neg		rdx								; reverse value from neg to pos
+	mov		byte [rax], dl					; wr err to proper location
+	mov		rax, 0							; set return status
 
 return:
 
