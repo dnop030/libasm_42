@@ -11,7 +11,7 @@ global ft_strdup
 extern malloc
 extern ft_strlen
 extern ft_strcpy
-extern
+extern __errno_location
 
 ft_strdup:
 
@@ -29,6 +29,7 @@ ft_strdup:
 	mov		rsi, r12			; assign src pointer of str
 	call	ft_strcpy
 	mov		rax, r13			; prep return value
+	jp		return
 
 set_errno:
 	push	rax								; store err in stack
