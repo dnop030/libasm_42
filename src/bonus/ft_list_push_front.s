@@ -56,7 +56,7 @@ ft_create_elem:
 	je		set_err
 
 	mov		[rax + t_list.data], r15
-	mov		qword [rax + t_list.next], 0 ; should be qword
+	mov		qword [rax + t_list.next], 0
 	ret
 
 set_err:
