@@ -29,6 +29,8 @@ ft_list_push_front:
 ;Register usage:
 ;r12 - sizeof(t_list)
 ft_create_elem:
-	xor		rax				; reset output
-	mov		rdi,
+	xor		rax, rax				; reset output
+	mov		rdi, t_list
+    call    sizeof
+
 
