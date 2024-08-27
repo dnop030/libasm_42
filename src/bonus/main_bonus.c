@@ -160,12 +160,11 @@ int main(void)
 
 	// test list_push_front
 	t_list *list = NULL;
-	ft_list_push_front(&list, "1");
-	// test_list_push_front(&list, "1");
-	// test_list_push_front(&list, "0");
-	// test_list_push_front(&list, "2");
-	// test_list_push_front(&list, "3");
-	// test_list_push_front(&list, "4");
+	test_list_push_front(&list, "1");
+	test_list_push_front(&list, "0");
+	test_list_push_front(&list, "2");
+	test_list_push_front(&list, "3");
+	test_list_push_front(&list, "4");
 
 	// // test list_size
 	// test_list_size(list);
