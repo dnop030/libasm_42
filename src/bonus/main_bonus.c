@@ -198,14 +198,18 @@ int main(void)
 		ft_list_push_front(&list, strdup("2"));
 		// ft_list_push_front(&list, strdup("0"));
 
+		show_list(list);
+
 		// printf("stor linklist:%p\n", &list);
 		// show_list(list);
 		// printf("\n");
 		// printf("\n");
 		// printf("\n");
-		// printf("\n");
+		printf("\n");
 
 		ft_list_sort(&list, strcmp);
+
+		show_list(list);
 	}
 
 	// // test list_remove_if
