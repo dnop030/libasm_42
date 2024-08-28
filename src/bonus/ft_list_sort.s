@@ -22,58 +22,33 @@ global ft_list_sort
 
 ft_list_sort:
 
-;prove_concept:
-;	mov		qword rcx, [rdi]				;*begin_list
-;	mov		qword r9, [rcx + t_list.data]	;(*begin_list)
-;	mov		qword r10, [r9]
+preserve_ip:
+	push	rdi
 
-;;rbx - 1 st node
-;;rcx - 2 nd node
-;;r9 - 3 rd node
-;;3 1 2
-;;test swap node 1 and node2
-;	mov		rbx, [rdi]
-;	mov		rcx, [rbx + t_list.next]
-;	mov		r9, [rcx + t_list.next]
-;	mov		qword [rbx + t_list.next], 0
-;	mov		qword [rcx + t_list.next], 0
-;	mov		qword [r9 + t_list.next], 0
-;	
-;	;re-order
-;	mov		qword [r9 + t_list.next], rbx
-;	mov		qword [rbx + t_list.next], rcx
-;
-;	;put bact to begin_list
-;	mov		[rdi], r9
+chk_input_not_null:
+	cmp		qword rdi, 0
+	je		return
+	cmp		qword [rdi], 0
+	je		return
+	cmp		qword rsi, 0
+	je		return
 
+assign_ptr:
+	mov		qword rbx, rdi
+	mov		qword r12, rsi
 
-;preserve_ip:
-;	push	rdi
-;
-;chk_input_not_null:
-;	cmp		qword rdi, 0
-;	je		return
-;	cmp		qword [rdi], 0
-;	je		return
-;	cmp		qword rsi, 0
-;	je		return
-;
-;assign_ptr:
-;	mov		qword rbx, rdi
-;	mov		qword r12, rsi
-;
-;assign_var:
-;	mov		qword r13, [rbx]				;head_new = *begin_list
-;	mov		qword r10, [rbx + t_list.next]	;*begin_list = (*begin_list)->next	;+++++++
-;	mov		qword [rbx], r10				;
-;	mov		qword [r13 + t_list.next], 0	;head_new->next = NULL
-;
-;loop_old_lst:
-;	cmp		qword [rbx], 0
-;	je		set_new_lst_back
-;
-;set_node_cmp
-;	mov		qword r14, 0
+assign_var:
+	mov		qword r13, [rbx]				;head_new = *begin_list
+	mov		qword r10, [r13 + t_list.next]	;*begin_list = (*begin_list)->next
+	mov		qword [rbx], r10				;
+	mov		qword [r13 + t_list.next], 0	;head_new->next = NULL
+
+loop_old_lst:
+	cmp		qword [rbx], 0					; *begin_list != NULL
+	je		set_new_lst_back
+
+set_node_cmp
+	mov		qword r14, 0
 ;	mov		qword r15, r13
 ;
 ;loop_srch_pos_new_lst:
@@ -117,7 +92,33 @@ ft_list_sort:
 ;set_new_lst_back:
 ;	pop		r8
 ;	mov		qword [r8], r13
-	
+
 return:
 	xor		rax,rax ; ********************
 	ret
+
+
+
+;prove_concept:
+;	mov		qword rcx, [rdi]				;*begin_list
+;	mov		qword r9, [rcx + t_list.data]	;(*begin_list)
+;	mov		qword r10, [r9]
+
+;;rbx - 1 st node
+;;rcx - 2 nd node
+;;r9 - 3 rd node
+;;3 1 2
+;;test swap node 1 and node2
+;	mov		rbx, [rdi]
+;	mov		rcx, [rbx + t_list.next]
+;	mov		r9, [rcx + t_list.next]
+;	mov		qword [rbx + t_list.next], 0
+;	mov		qword [rcx + t_list.next], 0
+;	mov		qword [r9 + t_list.next], 0
+;
+;	;re-order
+;	mov		qword [r9 + t_list.next], rbx
+;	mov		qword [rbx + t_list.next], rcx
+;
+;	;put bact to begin_list
+;	mov		[rdi], r9
