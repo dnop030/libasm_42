@@ -23,8 +23,9 @@ loop:
     cmp     qword rdi, 0
     je      return
     inc     rax
-    mov     qword rcx, [rdi + t_list.next]
-    mov     qword rdi, rcx
+;    mov     qword rcx, [rdi + t_list.next]
+;    mov     qword rdi, rcx
+    mov     rdi, [rdi + t_list.next]
     jmp     loop
 
 return:
