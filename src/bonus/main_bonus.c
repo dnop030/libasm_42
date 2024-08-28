@@ -82,38 +82,38 @@ void test_list_size(t_list *list)
 	printf("ft_list_size: %d\033[0m\n\n", ret);
 }
 
-// void test_list_sort(t_list **list)
-// {
-// 	t_list *tmp = *list;
-// 	bonus_test_count++;
-// 	while (tmp)
-// 	{
-// 		// check if data is sorted
-// 		printf("list->data: %s\n", (char *)(tmp)->data);
-// 		tmp = tmp->next;
-// 	}
-// 	tmp = *list;
-// 	printf("\n\nsorting ...\n\n");
-// 	ft_list_sort(list, strcmp);
-// 	while (tmp)
-// 	{
-// 		// check if data is sorted
-// 		printf("list->data: %s\n", (char *)(tmp)->data);
-// 		tmp = tmp->next;
-// 	}
-// 	while ((*list)->next)
-// 	{
-// 		// check if data is sorted
-// 		if (strcmp((*list)->data, (*list)->next->data) > 0)
-// 		{
-// 			printf("ft_list_sort: \x1b[31mKO\x1b[0m\n\n");
-// 			bonus_failed++;
-// 			return ;
-// 		}
-// 		list = &(*list)->next;
-// 	}
-// 	printf("ft_list_sort: \x1b[32mOK\x1b[0m\n\n");
-// }
+void test_list_sort(t_list **list)
+{
+	t_list *tmp = *list;
+	bonus_test_count++;
+	while (tmp)
+	{
+		// check if data is sorted
+		printf("list->data: %s\n", (char *)(tmp)->data);
+		tmp = tmp->next;
+	}
+	tmp = *list;
+	printf("\n\nsorting ...\n\n");
+	ft_list_sort(list, strcmp);
+	while (tmp)
+	{
+		// check if data is sorted
+		printf("list->data: %s\n", (char *)(tmp)->data);
+		tmp = tmp->next;
+	}
+	while ((*list)->next)
+	{
+		// check if data is sorted
+		if (strcmp((*list)->data, (*list)->next->data) > 0)
+		{
+			printf("ft_list_sort: \x1b[31mKO\x1b[0m\n\n");
+			bonus_failed++;
+			return ;
+		}
+		list = &(*list)->next;
+	}
+	printf("ft_list_sort: \x1b[32mOK\x1b[0m\n\n");
+}
 
 // void test_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *,void *), void (*free_fct)(void *))
 // {
@@ -138,6 +138,16 @@ void test_list_size(t_list *list)
 // 	return strcmp((char *)a, (char *)b);
 // }
 
+void    show_list(t_list *lst)
+{
+	while (lst != NULL)
+	{
+		printf("addr:%p data:%s addr data:%p addr next:%p\n", lst, (char *)lst->data, &lst->data, &lst->next);
+		lst = lst->next;
+	}
+	printf("\n");
+}
+
 int main(void)
 {
 	// // test atoi_base
@@ -160,15 +170,15 @@ int main(void)
 
 	// test list_push_front
 	t_list *list = NULL;
-	test_list_push_front(&list, "1");
-	test_list_push_front(&list, "0");
-	test_list_push_front(&list, "2");
-	test_list_push_front(&list, "3");
-	test_list_push_front(&list, "4");
+	// test_list_push_front(&list, "1");
+	// test_list_push_front(&list, "0");
+	// test_list_push_front(&list, "2");
+	// test_list_push_front(&list, "3");
+	// test_list_push_front(&list, "4");
 
-	// test list_size
-	test_list_size(list);
-	test_list_size(NULL);
+	// // test list_size
+	// test_list_size(list);
+	// test_list_size(NULL);
 
 	// test_list_sort(&list);
 
@@ -180,6 +190,23 @@ int main(void)
 	// ft_list_sort(NULL, NULL);
 
 	// printf("NULL list test: \x1b[32mOK\n\n");
+
+	// debug list sort
+	{
+		ft_list_push_front(&list, strdup("1"));
+		ft_list_push_front(&list, strdup("6"));
+		ft_list_push_front(&list, strdup("2"));
+		// ft_list_push_front(&list, strdup("0"));
+
+		// printf("stor linklist:%p\n", &list);
+		// show_list(list);
+		// printf("\n");
+		// printf("\n");
+		// printf("\n");
+		// printf("\n");
+
+		ft_list_sort(&list, strcmp);
+	}
 
 	// // test list_remove_if
 	// t_list *list_remove_if = NULL;
