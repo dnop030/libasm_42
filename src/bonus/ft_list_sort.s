@@ -97,29 +97,3 @@ set_new_lst_back:
 return:
 	xor		rax,rax ;
 	ret
-
-
-
-;prove_concept:
-;	mov		qword rcx, [rdi]				;*begin_list
-;	mov		qword r9, [rcx + t_list.data]	;(*begin_list)
-;	mov		qword r10, [r9]
-
-;;rbx - 1 st node
-;;rcx - 2 nd node
-;;r9 - 3 rd node
-;;3 1 2
-;;test swap node 1 and node2
-;	mov		rbx, [rdi]
-;	mov		rcx, [rbx + t_list.next]
-;	mov		r9, [rcx + t_list.next]
-;	mov		qword [rbx + t_list.next], 0
-;	mov		qword [rcx + t_list.next], 0
-;	mov		qword [r9 + t_list.next], 0
-;
-;	;re-order
-;	mov		qword [r9 + t_list.next], rbx
-;	mov		qword [rbx + t_list.next], rcx
-;
-;	;put bact to begin_list
-;	mov		[rdi], r9
