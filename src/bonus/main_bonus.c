@@ -182,12 +182,12 @@ int main(void)
 
 	test_list_sort(&list);
 
-	// // should not crash
-	// t_list *null_list = NULL;
+	// should not crash
+	t_list *null_list = NULL;
 
-	// ft_list_sort(&list, NULL);
-	// ft_list_sort(&null_list, NULL);
-	// ft_list_sort(NULL, NULL);
+	ft_list_sort(&list, NULL);
+	ft_list_sort(&null_list, NULL);
+	ft_list_sort(NULL, NULL);
 
 	printf("NULL list test: \x1b[32mOK\n\n");
 
@@ -200,18 +200,24 @@ int main(void)
 	// 	ft_list_push_front(&list, strdup("0"));
 	// 	ft_list_push_front(&list, strdup("4"));
 
-	// 	show_list(list);
+	// 	// t_list *null_list = NULL;
 
-	// 	// printf("stor linklist:%p\n", &list);
-	// 	// show_list(list);
-	// 	// printf("\n");
-	// 	// printf("\n");
-	// 	// printf("\n");
-	// 	// printf("\n");
+	// 	ft_list_sort(&list, NULL);
+	// 	// ft_list_sort(&null_list, NULL);
+	// 	// ft_list_sort(NULL, NULL);
 
-	// 	ft_list_sort(&list, strcmp);
+	// // 	show_list(list);
 
-	// 	show_list(list);
+	// // 	// printf("stor linklist:%p\n", &list);
+	// // 	// show_list(list);
+	// // 	// printf("\n");
+	// // 	// printf("\n");
+	// // 	// printf("\n");
+	// // 	// printf("\n");
+
+	// // 	ft_list_sort(&list, strcmp);
+
+	// // 	show_list(list);
 	// }
 
 	// // test list_remove_if

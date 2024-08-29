@@ -22,9 +22,6 @@ global ft_list_sort
 
 ft_list_sort:
 
-preserve_ip:
-	push	rdi
-
 chk_input_not_null:
 	cmp		qword rdi, 0
 	je		return
@@ -32,6 +29,9 @@ chk_input_not_null:
 	je		return
 	cmp		qword rsi, 0
 	je		return
+
+preserve_ip:
+	push	rdi
 
 assign_ptr:
 	mov		qword rbx, rdi
