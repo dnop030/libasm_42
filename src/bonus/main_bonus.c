@@ -170,17 +170,17 @@ int main(void)
 
 	// test list_push_front
 	t_list *list = NULL;
-	// test_list_push_front(&list, "1");
-	// test_list_push_front(&list, "0");
-	// test_list_push_front(&list, "2");
-	// test_list_push_front(&list, "3");
-	// test_list_push_front(&list, "4");
+	test_list_push_front(&list, "1");
+	test_list_push_front(&list, "0");
+	test_list_push_front(&list, "2");
+	test_list_push_front(&list, "3");
+	test_list_push_front(&list, "4");
 
-	// // test list_size
-	// test_list_size(list);
-	// test_list_size(NULL);
+	// test list_size
+	test_list_size(list);
+	test_list_size(NULL);
 
-	// test_list_sort(&list);
+	test_list_sort(&list);
 
 	// // should not crash
 	// t_list *null_list = NULL;
@@ -189,28 +189,30 @@ int main(void)
 	// ft_list_sort(&null_list, NULL);
 	// ft_list_sort(NULL, NULL);
 
-	// printf("NULL list test: \x1b[32mOK\n\n");
+	printf("NULL list test: \x1b[32mOK\n\n");
 
-	// debug list sort
-	{
-		ft_list_push_front(&list, strdup("1"));
-		ft_list_push_front(&list, strdup("6"));
-		ft_list_push_front(&list, strdup("2"));
-		// ft_list_push_front(&list, strdup("0"));
+	// // debug list sort
+	// {
+	// 	t_list *list = NULL;
+	// 	// ft_list_push_front(&list, strdup("5"));
+	// 	ft_list_push_front(&list, strdup("2"));
+	// 	ft_list_push_front(&list, strdup("6"));
+	// 	ft_list_push_front(&list, strdup("0"));
+	// 	ft_list_push_front(&list, strdup("4"));
 
-		show_list(list);
+	// 	show_list(list);
 
-		// printf("stor linklist:%p\n", &list);
-		// show_list(list);
-		// printf("\n");
-		// printf("\n");
-		// printf("\n");
-		printf("\n");
+	// 	// printf("stor linklist:%p\n", &list);
+	// 	// show_list(list);
+	// 	// printf("\n");
+	// 	// printf("\n");
+	// 	// printf("\n");
+	// 	// printf("\n");
 
-		ft_list_sort(&list, strcmp);
+	// 	ft_list_sort(&list, strcmp);
 
-		show_list(list);
-	}
+	// 	show_list(list);
+	// }
 
 	// // test list_remove_if
 	// t_list *list_remove_if = NULL;
