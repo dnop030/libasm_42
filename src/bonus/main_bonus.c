@@ -115,28 +115,28 @@ void test_list_sort(t_list **list)
 	printf("ft_list_sort: \x1b[32mOK\x1b[0m\n\n");
 }
 
-// void test_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *,void *), void (*free_fct)(void *))
-// {
-// 	bonus_test_count++;
-// 	ft_list_remove_if(begin_list, data_ref, cmp, free_fct);
-// 	while (*begin_list)
-// 	{
-// 		printf("list->data: %s\n", (char *)(*begin_list)->data);
-// 		if ((*cmp)((*begin_list)->data, data_ref) == 0)
-// 		{
-// 			printf("ft_list_remove_if: \x1b[31mKO\x1b[0m\n\n");
-// 			bonus_failed++;
-// 			return ;
-// 		}
-// 		begin_list = &(*begin_list)->next;
-// 	}
-// 	printf("ft_list_remove_if: \x1b[32mOK\x1b[0m\n\n");
-// }
+void test_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *,void *), void (*free_fct)(void *))
+{
+	bonus_test_count++;
+	ft_list_remove_if(begin_list, data_ref, cmp, free_fct);
+	while (*begin_list)
+	{
+		printf("list->data: %s\n", (char *)(*begin_list)->data);
+		if ((*cmp)((*begin_list)->data, data_ref) == 0)
+		{
+			printf("ft_list_remove_if: \x1b[31mKO\x1b[0m\n\n");
+			bonus_failed++;
+			return ;
+		}
+		begin_list = &(*begin_list)->next;
+	}
+	printf("ft_list_remove_if: \x1b[32mOK\x1b[0m\n\n");
+}
 
-// int strcmp_wrapper(void *a, void *b)
-// {
-// 	return strcmp((char *)a, (char *)b);
-// }
+int strcmp_wrapper(void *a, void *b)
+{
+	return strcmp((char *)a, (char *)b);
+}
 
 void    show_list(t_list *lst)
 {
@@ -168,68 +168,39 @@ int main(void)
 	// test_atoi_base("123", "0123456789+", 0);
 	// test_atoi_base("123", "0123456789\n", 0);
 
-	// test list_push_front
-	t_list *list = NULL;
-	test_list_push_front(&list, "1");
-	test_list_push_front(&list, "0");
-	test_list_push_front(&list, "2");
-	test_list_push_front(&list, "3");
-	test_list_push_front(&list, "4");
+	// // test list_push_front
+	// t_list *list = NULL;
+	// test_list_push_front(&list, "1");
+	// test_list_push_front(&list, "0");
+	// test_list_push_front(&list, "2");
+	// test_list_push_front(&list, "3");
+	// test_list_push_front(&list, "4");
 
-	// test list_size
-	test_list_size(list);
-	test_list_size(NULL);
+	// // test list_size
+	// test_list_size(list);
+	// test_list_size(NULL);
 
-	test_list_sort(&list);
+	// test_list_sort(&list);
 
-	// should not crash
-	t_list *null_list = NULL;
+	// // should not crash
+	// t_list *null_list = NULL;
 
-	ft_list_sort(&list, NULL);
-	ft_list_sort(&null_list, NULL);
-	ft_list_sort(NULL, NULL);
+	// ft_list_sort(&list, NULL);
+	// ft_list_sort(&null_list, NULL);
+	// ft_list_sort(NULL, NULL);
 
-	printf("NULL list test: \x1b[32mOK\n\n");
+	// printf("NULL list test: \x1b[32mOK\n\n");
 
-	// // debug list sort
-	// {
-	// 	t_list *list = NULL;
-	// 	// ft_list_push_front(&list, strdup("5"));
-	// 	ft_list_push_front(&list, strdup("2"));
-	// 	ft_list_push_front(&list, strdup("6"));
-	// 	ft_list_push_front(&list, strdup("0"));
-	// 	ft_list_push_front(&list, strdup("4"));
+	// test list_remove_if
+	t_list *list_remove_if = NULL;
+	ft_list_push_front(&list_remove_if, strdup("1"));
+	ft_list_push_front(&list_remove_if, strdup("2"));
+	ft_list_push_front(&list_remove_if, strdup("1"));
+	ft_list_push_front(&list_remove_if, strdup("3"));
+	ft_list_push_front(&list_remove_if, strdup("4"));
+	ft_list_push_front(&list_remove_if, strdup("5"));
 
-	// 	// t_list *null_list = NULL;
-
-	// 	ft_list_sort(&list, NULL);
-	// 	// ft_list_sort(&null_list, NULL);
-	// 	// ft_list_sort(NULL, NULL);
-
-	// // 	show_list(list);
-
-	// // 	// printf("stor linklist:%p\n", &list);
-	// // 	// show_list(list);
-	// // 	// printf("\n");
-	// // 	// printf("\n");
-	// // 	// printf("\n");
-	// // 	// printf("\n");
-
-	// // 	ft_list_sort(&list, strcmp);
-
-	// // 	show_list(list);
-	// }
-
-	// // test list_remove_if
-	// t_list *list_remove_if = NULL;
-	// ft_list_push_front(&list_remove_if, strdup("1"));
-	// ft_list_push_front(&list_remove_if, strdup("2"));
-	// ft_list_push_front(&list_remove_if, strdup("1"));
-	// ft_list_push_front(&list_remove_if, strdup("3"));
-	// ft_list_push_front(&list_remove_if, strdup("4"));
-	// ft_list_push_front(&list_remove_if, strdup("5"));
-
-	// test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
+	test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
 
 	// // *test_count += bonus_test_count;
 	// // *test_failed += bonus_failed;
