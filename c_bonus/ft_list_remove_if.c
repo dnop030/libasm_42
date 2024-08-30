@@ -44,6 +44,7 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(void *, v
 		}
 		else
 		{
+			// move ptr to find del node
 			if (prev_node == NULL)
 				prev_node = *begin_list;
 			else
