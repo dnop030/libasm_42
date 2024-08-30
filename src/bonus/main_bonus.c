@@ -1,4 +1,5 @@
 #include "header_bonus.h"
+#include <stdlib.h>
 
 int bonus_test_count = 0;
 int bonus_failed = 0;
@@ -148,6 +149,19 @@ void    show_list(t_list *lst)
 	printf("\n");
 }
 
+void	ft_list_clr(t_list **begin)
+{
+	t_list	*tmp;
+
+	while (*begin != NULL)
+	{
+		tmp = *begin;
+		*begin = (*begin)->next;
+		free(tmp->data);
+		free(tmp);
+	}
+}
+
 int main(void)
 {
 	// // test atoi_base
@@ -191,16 +205,39 @@ int main(void)
 
 	// printf("NULL list test: \x1b[32mOK\n\n");
 
-	// test list_remove_if
-	t_list *list_remove_if = NULL;
-	ft_list_push_front(&list_remove_if, strdup("1"));
-	ft_list_push_front(&list_remove_if, strdup("2"));
-	ft_list_push_front(&list_remove_if, strdup("1"));
-	ft_list_push_front(&list_remove_if, strdup("3"));
-	ft_list_push_front(&list_remove_if, strdup("4"));
-	ft_list_push_front(&list_remove_if, strdup("5"));
+	// // test list_remove_if
+	// t_list *list_remove_if = NULL;
+	// ft_list_push_front(&list_remove_if, strdup("1"));
+	// ft_list_push_front(&list_remove_if, strdup("2"));
+	// ft_list_push_front(&list_remove_if, strdup("1"));
+	// ft_list_push_front(&list_remove_if, strdup("3"));
+	// ft_list_push_front(&list_remove_if, strdup("4"));
+	// ft_list_push_front(&list_remove_if, strdup("5"));
+	// ft_list_push_front(&list_remove_if, strdup("1"));
 
-	test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
+	// test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
+
+	{
+		// test list_remove_if
+		t_list *list_remove_if = NULL;
+		ft_list_push_front(&list_remove_if, strdup("1"));
+		ft_list_push_front(&list_remove_if, strdup("2"));
+		ft_list_push_front(&list_remove_if, strdup("1"));
+		ft_list_push_front(&list_remove_if, strdup("3"));
+		ft_list_push_front(&list_remove_if, strdup("4"));
+		ft_list_push_front(&list_remove_if, strdup("5"));
+		ft_list_push_front(&list_remove_if, strdup("1"));
+
+		printf("\nBef\n");
+		show_list(list_remove_if);
+
+		ft_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
+
+		printf("\nAft\n");
+		show_list(list_remove_if);
+
+		ft_list_clr(&list_remove_if);
+	}
 
 	// // *test_count += bonus_test_count;
 	// // *test_failed += bonus_failed;

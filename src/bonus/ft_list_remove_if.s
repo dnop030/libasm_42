@@ -21,7 +21,7 @@ extern	free
 ;r14 - *prev_n
 ;r15 - *pres_n
 
-;r10 - *del_node
+;r10 - *del_node, tmp
 ;r11 - tmp(for move data from mem2mem)
 
 ft_list_remove_if:
@@ -55,7 +55,6 @@ loop:
 	je		return
 
 cmp_node:
-	xor		rax, rax					; reset rax
 	pop		r11
 	push	r11
 	mov		rdi, [r11]
@@ -66,11 +65,13 @@ cmp_node:
 	jne		find_del_node
 
 assign_first_node_back:
-	cmp		qword r15, 0
+	cmp		qword r14, 0
 	jne		assign_del_node
 	pop		r11
 	push	r11
-	mov		[r11], [r15 + t_list.next]
+;	mov		qword [r11], [r15 + t_list.next]
+	mov		qword r10, [r15 + t_list.next]
+	mov		qword [r11], r10
 
 assign_del_node:
 	mov		r10, r15
@@ -100,7 +101,8 @@ del_node:
 	mov		rdi, [r10 + t_list.data]	;*********
 	call	r13
 	mov		rdi, r10
-	call	free						;******
+;	call	free wrt ..plt				;******
+	call	r13
 
 find_del_node:
 	cmp		qword r14, 0
@@ -117,5 +119,6 @@ mv_pres_node:
 	mov		r15, [r15 + t_list.next]
 
 return:
+	pop		rax
 	xor		rax, rax
 	ret
