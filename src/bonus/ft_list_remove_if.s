@@ -45,20 +45,21 @@ assign_var_reg:
 	mov		r13, rcx
 
 assign_ptr:
-	mov		r14, qword 0
-	pop		r15
-	push	r15
-	mov		r15, qword [r15]
+	mov		r14, qword 0						; prev_n = NULL
+	pop		r15									;
+	push	r15									;
+	mov		r15, qword [r15]					; pres_n = *begin_list
 
 loop:
-	cmp		qword r15, 0
-	je		return
+	cmp		qword r15, 0						; while (pres_n != NULL)
+	je		return								; ^
 
 cmp_node:
-	pop		r11
-	push	r11
-	mov		rdi, [r11]
-	mov		rdi, [rdi + t_list.data]
+;	pop		r11
+;	push	r11
+;	mov		rdi, [r11]
+;	mov		rdi, [rdi + t_list.data]			; why am i using *begin_list
+	mov		rdi, [r15 + t_list.data]
 	mov		rsi, rbx
 	call	r12
 	cmp		qword rax, 0
@@ -101,8 +102,9 @@ del_node:
 	mov		rdi, [r10 + t_list.data]	;*********
 	call	r13
 	mov		rdi, r10
-;	call	free wrt ..plt				;******
-	call	r13
+	call	free wrt ..plt				;******
+;	call	r13
+	jmp		loop
 
 find_del_node:
 	cmp		qword r14, 0
@@ -117,6 +119,7 @@ els_find_del_node:
 
 mv_pres_node:
 	mov		r15, [r15 + t_list.next]
+	jmp		loop
 
 return:
 	pop		rax
