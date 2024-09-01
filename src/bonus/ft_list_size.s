@@ -18,15 +18,13 @@ global ft_list_size
 
 ft_list_size:
 
-    xor     rax, rax
+	xor		rax, rax
 loop:
-    cmp     qword rdi, 0
-    je      return
-    inc     rax
-;    mov     qword rcx, [rdi + t_list.next]
-;    mov     qword rdi, rcx
-    mov     rdi, [rdi + t_list.next]
-    jmp     loop
+	cmp		qword rdi, 0
+	je		return
+	inc		rax
+	mov		rdi, [rdi + t_list.next]
+	jmp		loop
 
 return:
-    ret
+	ret

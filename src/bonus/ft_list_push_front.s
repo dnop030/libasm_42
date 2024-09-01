@@ -46,11 +46,10 @@ return:
 ;r15 - *data
 ;rbx - tmp for err status of malloc
 ft_create_elem:
-	xor		rax, rax				; reset output
-	mov		r15, rdi				; preserve input
+	xor		rax, rax						; reset output
+	mov		r15, rdi						; preserve input
 
-;	mov		rdi, t_list_size
-	mov		rdi, 16
+	mov		rdi, 16							; size of node on linklist
 	call	malloc wrt ..plt
 	cmp		rax, 0
 	je		set_err

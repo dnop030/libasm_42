@@ -139,7 +139,7 @@ int strcmp_wrapper(void *a, void *b)
 	return strcmp((char *)a, (char *)b);
 }
 
-void    show_list(t_list *lst)
+void	show_list(t_list *lst)
 {
 	while (lst != NULL)
 	{
@@ -164,80 +164,85 @@ void	ft_list_clr(t_list **begin)
 
 int main(void)
 {
-	// // test atoi_base
-	// test_atoi_base_10("42");
-	// test_atoi_base_10("0");
-	// test_atoi_base_10("1");
-	// test_atoi_base_10("1215415478");
-	// test_atoi_base("42", "0123456789", 42);
-	// test_atoi_base("0", "0123456789", 0);
-	// test_atoi_base("1", "0123456789", 1);
-	// test_atoi_base("1215415478", "0123456789", 1215415478);
-	// test_atoi_base("-0", "0123456789", 0);
-	// test_atoi_base("-1", "0123456789", -1);
-	// test_atoi_base("-42", "0123456789", -42);
-	// test_atoi_base("a", "0123456789abcdef", 10);
-	// test_atoi_base("123", "+", 0);
-	// test_atoi_base("123", " 0123456789", 0);
-	// test_atoi_base("123", "0123456789+", 0);
-	// test_atoi_base("123", "0123456789\n", 0);
+	// test atoi_base
+	test_atoi_base_10("42");
+	test_atoi_base_10("0");
+	test_atoi_base_10("1");
+	test_atoi_base_10("1215415478");
+	test_atoi_base("42", "0123456789", 42);
+	test_atoi_base("0", "0123456789", 0);
+	test_atoi_base("1", "0123456789", 1);
+	test_atoi_base("1215415478", "0123456789", 1215415478);
+	test_atoi_base("-0", "0123456789", 0);
+	test_atoi_base("-1", "0123456789", -1);
+	test_atoi_base("-42", "0123456789", -42);
+	test_atoi_base("a", "0123456789abcdef", 10);
+	test_atoi_base("123", "+", 0);
+	test_atoi_base("123", " 0123456789", 0);
+	test_atoi_base("123", "0123456789+", 0);
+	test_atoi_base("123", "0123456789\n", 0);
 
-	// // test list_push_front
-	// t_list *list = NULL;
-	// test_list_push_front(&list, "1");
-	// test_list_push_front(&list, "0");
-	// test_list_push_front(&list, "2");
-	// test_list_push_front(&list, "3");
-	// test_list_push_front(&list, "4");
+	// test list_push_front
+	t_list *list = NULL;
+	test_list_push_front(&list, "1");
+	test_list_push_front(&list, "0");
+	test_list_push_front(&list, "2");
+	test_list_push_front(&list, "3");
+	test_list_push_front(&list, "4");
 
-	// // test list_size
-	// test_list_size(list);
-	// test_list_size(NULL);
+	// test list_size
+	test_list_size(list);
+	test_list_size(NULL);
 
-	// test_list_sort(&list);
+	test_list_sort(&list);
 
-	// // should not crash
-	// t_list *null_list = NULL;
+	// should not crash
+	t_list *null_list = NULL;
 
-	// ft_list_sort(&list, NULL);
-	// ft_list_sort(&null_list, NULL);
-	// ft_list_sort(NULL, NULL);
+	ft_list_sort(&list, NULL);
+	ft_list_sort(&null_list, NULL);
+	ft_list_sort(NULL, NULL);
 
-	// printf("NULL list test: \x1b[32mOK\n\n");
+	printf("NULL list test: \x1b[32mOK\n\n");
 
-	// // test list_remove_if
-	// t_list *list_remove_if = NULL;
-	// ft_list_push_front(&list_remove_if, strdup("1"));
-	// ft_list_push_front(&list_remove_if, strdup("2"));
-	// ft_list_push_front(&list_remove_if, strdup("1"));
-	// ft_list_push_front(&list_remove_if, strdup("3"));
-	// ft_list_push_front(&list_remove_if, strdup("4"));
-	// ft_list_push_front(&list_remove_if, strdup("5"));
-	// ft_list_push_front(&list_remove_if, strdup("1"));
+	// test list_remove_if
+	t_list *list_remove_if = NULL;
+	ft_list_push_front(&list_remove_if, strdup("1"));
+	ft_list_push_front(&list_remove_if, strdup("2"));
+	ft_list_push_front(&list_remove_if, strdup("1"));
+	ft_list_push_front(&list_remove_if, strdup("3"));
+	ft_list_push_front(&list_remove_if, strdup("4"));
+	ft_list_push_front(&list_remove_if, strdup("5"));
+	ft_list_push_front(&list_remove_if, strdup("1"));
 
-	// test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
+	test_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
 
-	{
-		// test list_remove_if
-		t_list *list_remove_if = NULL;
-		ft_list_push_front(&list_remove_if, strdup("1"));
-		ft_list_push_front(&list_remove_if, strdup("2"));
-		ft_list_push_front(&list_remove_if, strdup("1"));
-		ft_list_push_front(&list_remove_if, strdup("3"));
-		ft_list_push_front(&list_remove_if, strdup("4"));
-		ft_list_push_front(&list_remove_if, strdup("5"));
-		ft_list_push_front(&list_remove_if, strdup("1"));
+	// {
+	// 	// test list_remove_if
+	// 	t_list *list_remove_if = NULL;
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("2"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("3"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("4"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("5"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
+	// 	ft_list_push_front(&list_remove_if, strdup("1"));
 
-		printf("\nBef\n");
-		show_list(list_remove_if);
+	// 	printf("\nBef\n");
+	// 	show_list(list_remove_if);
 
-		ft_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
+	// 	ft_list_remove_if(&list_remove_if, "1", strcmp_wrapper, free);
 
-		printf("\nAft\n");
-		show_list(list_remove_if);
+	// 	printf("\nAft\n");
+	// 	show_list(list_remove_if);
 
-		ft_list_clr(&list_remove_if);
-	}
+	// 	ft_list_clr(&list_remove_if);
+	// }
 
 	// // *test_count += bonus_test_count;
 	// // *test_failed += bonus_failed;

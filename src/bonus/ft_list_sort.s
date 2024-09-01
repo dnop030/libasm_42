@@ -73,9 +73,9 @@ mv_node_2_new_lst:
 	mov		qword [r9 + t_list.next], 0		; tmp_n = NULL
 
 add_lst_node:
-	cmp		qword r15, 0
+	cmp		qword r15, 0					; if (pres_n == NULL)
 	jne		add_first_node
-	mov		qword [r14 + t_list.next], r9
+	mov		qword [r14 + t_list.next], r9	; prev_n->next = tmp_n
 	jmp		loop_old_lst
 
 add_first_node:
