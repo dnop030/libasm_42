@@ -54,11 +54,12 @@ BONUS_ASM_OBJ = $(addprefix $(BONUS_OUTPUT_DIR)/, $(BONUS_SRC:.s=.o))
 MAIN_BONUS_OBJ = $(BONUS_OUTPUT_DIR)/$(BONUS_MAIN:.c=.o)
 
 # Rules
+
 all: $(LIB_NAME)
 
 $(LIB_NAME): $(MAN_ASM_OBJ)
 	@$(LINKER) $(LIB_NAME) $(MAN_ASM_OBJ)
-	@echo "Mandatory Lib Done!"
+	@echo "$(LIB_NAME) mandatory Lib Done!"
 
 $(OUTPUT_DIR)/%.o: $(DIR)/%.s
 	@mkdir -p $(OUTPUT_DIR)
@@ -73,15 +74,15 @@ test: all $(MAIN_OBJ)
 	@$(CC) -o $(NAME) $(CFLAGS) $(MAIN_OBJ) -L. -lasm
 	@echo "READY TO TEST MANDATORY"
 
-bonus: $(BONUS_LIB_NAME)
+bonus: clean $(LIB_NAME)_bonus
+	@echo "$(LIB_NAME) mandatory and bonus Lib Done!"
 
-$(BONUS_LIB_NAME): $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
-	$(LINKER) $(BONUS_LIB_NAME) $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
-	@echo "Bonus Lib Done!"
+$(LIB_NAME)_bonus: $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
+	@$(LINKER) $(LIB_NAME) $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
 
 $(BONUS_OUTPUT_DIR)/%.o: $(BONUS_DIR)/%.s
-	mkdir -p $(BONUS_OUTPUT_DIR)
-	$(AS) $(ASFLAGS) -g $< -o $@
+	@mkdir -p $(BONUS_OUTPUT_DIR)
+	@$(AS) $(ASFLAGS) -g $< -o $@
 
 $(MAIN_BONUS_OBJ): $(BONUS_DIR)/$(BONUS_MAIN)
 	@mkdir -p $(BONUS_OUTPUT_DIR)
@@ -89,10 +90,11 @@ $(MAIN_BONUS_OBJ): $(BONUS_DIR)/$(BONUS_MAIN)
 	@echo "Main Bonus test Lib Done!"
 
 test_bonus: bonus $(MAIN_BONUS_OBJ)
-	$(CC) -o $(BONUS_NAME) $(CFLAGS) -g $(MAIN_BONUS_OBJ) -L. -lasm
+	@$(CC) -o $(BONUS_NAME) $(CFLAGS) -g $(MAIN_BONUS_OBJ) -L. -lasm
+	@echo "READY TO TEST BONUS"
 
 clean:
-	@rm -rf $(OUTPUT_DIR)
+	@rm -rf $(OUTPUT_DIR) $(BONUS_OUTPUT_DIR)
 	@rm -f $(LIB_NAME)
 	@echo "DELETED LIB"
 
@@ -103,8 +105,64 @@ fclean: clean
 
 re: clean all
 
-re_test: fclean all
+re_test: fclean test
 
 re_bonus: fclean test_bonus
 
-.PHONY: all clean fclean re
+.PHONY: all test bonus test_bonus clean fclean re re_test re_bonus
+
+
+# all: $(LIB_NAME)
+
+# $(LIB_NAME): $(MAN_ASM_OBJ)
+# 	@$(LINKER) $(LIB_NAME) $(MAN_ASM_OBJ)
+# 	@echo "Mandatory Lib Done!"
+
+# $(OUTPUT_DIR)/%.o: $(DIR)/%.s
+# 	@mkdir -p $(OUTPUT_DIR)
+# 	@$(AS) $(ASFLAGS) -g $< -o $@
+
+# $(MAIN_OBJ): $(DIR)/$(MAIN)
+# 	@mkdir -p $(OUTPUT_DIR)
+# 	@$(CC) $(CFLAGS) -g -c $< -o $@
+# 	@echo "Main test Lib Done!"
+
+# test: all $(MAIN_OBJ)
+# 	@$(CC) -o $(NAME) $(CFLAGS) $(MAIN_OBJ) -L. -lasm
+# 	@echo "READY TO TEST MANDATORY"
+
+# bonus: $(BONUS_LIB_NAME)
+
+# $(BONUS_LIB_NAME): $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
+# 	$(LINKER) $(BONUS_LIB_NAME) $(MAN_ASM_OBJ) $(BONUS_ASM_OBJ)
+# 	@echo "Bonus Lib Done!"
+
+# $(BONUS_OUTPUT_DIR)/%.o: $(BONUS_DIR)/%.s
+# 	mkdir -p $(BONUS_OUTPUT_DIR)
+# 	$(AS) $(ASFLAGS) -g $< -o $@
+
+# $(MAIN_BONUS_OBJ): $(BONUS_DIR)/$(BONUS_MAIN)
+# 	@mkdir -p $(BONUS_OUTPUT_DIR)
+# 	@$(CC) $(CFLAGS) -g -c $< -o $@
+# 	@echo "Main Bonus test Lib Done!"
+
+# test_bonus: bonus $(MAIN_BONUS_OBJ)
+# 	$(CC) -o $(BONUS_NAME) $(CFLAGS) -g $(MAIN_BONUS_OBJ) -L. -lasm
+
+# clean:
+# 	@rm -rf $(OUTPUT_DIR)
+# 	@rm -f $(LIB_NAME)
+# 	@echo "DELETED LIB"
+
+# fclean: clean
+# 	@rm -f $(NAME)
+# 	@rm -f $(BONUS_NAME)
+# 	@echo "DELETED ALL"
+
+# re: clean all
+
+# re_test: fclean test
+
+# re_bonus: fclean test_bonus
+
+# .PHONY: all clean fclean re
